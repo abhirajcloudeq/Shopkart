@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { Home2Component } from './home2/home2.component';
-import { ProductListComponent } from './prod-detail/prod-detail.component';
+import { ProductDetailComponent } from './prod-detail/prod-detail.component';
 export const routes: Routes = [
     {
         path:'signup',component: SignupComponent
@@ -20,7 +20,7 @@ export const routes: Routes = [
     },
 
 {
-    path:'category/:id' , component:ProductListComponent
+    path:'category/:id' , component:ProductDetailComponent
 }
 
 ];

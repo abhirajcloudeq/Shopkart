@@ -4,7 +4,6 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { Product } from '../product';
 import { CategoryService} from '../service/apidata.service';
 import { AppComponent } from '../app.component';
 import { Category } from '../category';
@@ -37,9 +36,6 @@ export class Home2Component implements OnInit {
       
     );
   }
-  // product(){
-  //   alert("clicked")
-  //   this.router.navigate(['/category/'+category.id])
-  // }
+  
  
 }

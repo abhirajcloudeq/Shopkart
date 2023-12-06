@@ -12,19 +12,16 @@ export class CategoryService {
 
 
   getCategories(): Observable<any> {
-    // Assuming you have an authentication token stored somewhere
-    // const authToken = 'YOUR_AUTH_TOKEN';
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjQsImlhdCI6MTcwMTg1MDU2MSwiZXhwIjoxNzAxODU0MTYxfQ.KEXHqayTarMjTF_2hfqjtXFg_85C00jT5hua3z2x7q4'; 
+   
+    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE4NjY2NjgsImV4cCI6MTcwMTg3MDI2OH0.1hVEA34AJHuwUJgj8TFJFc7pcyvt43Znn0l_TIX54FU'; 
     // const accessToken  = localStorage.getItem("access-token")
     // console.log("accessToken", accessToken)
 
-    // Set the Authorization header with the token
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `${accessToken}`,
     });
 
-    // Pass the headers in the options parameter
     const options = { headers: headers };
 
     let data =  this.http.get(this.apiUrl, options);
@@ -32,7 +29,5 @@ export class CategoryService {
     return data
     
   }
-  // getCategories(): Observable<any> {
-  //   return this.http.get(this.apiUrl);
-  // }
+  
 }

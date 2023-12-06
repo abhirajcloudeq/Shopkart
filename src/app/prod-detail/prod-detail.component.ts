@@ -1,44 +1,39 @@
-// product-list.component.ts
+// prod-detail.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from '../service/product.service';
-import { Product } from '../product';
 import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../service/product.service';
+import { Product } from '../products';
+import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-product-detail',
+  standalone:true,
   templateUrl: './prod-detail.component.html',
+  imports: [CommonModule]
 })
-export class ProductListComponent implements OnInit {
-  product: any[] = [];
-  selectedCategory: string ='';
-  categoryMap: any = {"accessories": 1, "electronics": 2}
+export class ProductDetailComponent implements OnInit {
+  product: Product = {id: "",
+    title: "",
+    description: "",
+    price: 0,
+    image:''
+  };
 
-  constructor(private productService: ProductService, private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+    private productService: ProductService
+  ) {}
 
   ngOnInit() {
-    debugger;
-    this.route.paramMap.subscribe(params => {
-      this.selectedCategory = this.categoryMap[params.get('id') || '']
-    })
-    this.loadProducts();
-
-  }
-
-  loadProducts() {
-    debugger;
-    this.productService.getProducts(this.selectedCategory).subscribe((data) => {
-
-      this.product = data;
-      this.sortProductsById();
+    this.route.params.subscribe(params => {
+      const productId = params['id']; 
+      this.productService.getProductById(productId).subscribe(
+        (data) => {
+          console.log('Product Data:', data); 
+          this.product = data;
+        },
+      );
     });
   }
-
-  private sortProductsById() {
-    this.product.sort((a, b) => a.id - b.id);
-  }
-
-  onCategorySelect(category: string) {
-    this.selectedCategory = category;
-    this.loadProducts();
-  }
+  
 }

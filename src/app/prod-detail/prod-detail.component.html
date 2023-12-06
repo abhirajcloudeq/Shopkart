@@ -1,8 +1,8 @@
-<p>prod-detail works!</p>
-<!-- product-list.component.html -->
 
-  
-  <div *ngFor="let product of products">
-    <p>ID: {{ product.id }}, Name: {{ product.name }}, Price: {{ product.price }}</p>
+<div *ngIf="product">
+    <h2>{{ product.title }}</h2>
+    <img *ngIf="product.image" [src]="product.image" alt="{{ product.title }} Image">
+    <p>Description: {{ product.description }}</p>
+    <p>Price: {{ product.price | currency:'USD':'symbol' }}</p>
   </div>
   
