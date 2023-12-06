@@ -1,0 +1,81 @@
+{
+  "signup": [
+    {
+      "Firstname": "pratham",
+      "Lastname": "jagga",
+      "Email": "prtahm@gmail.com",
+      "Password": "123456",
+      "id": 8
+    },
+    {
+      "Firstname": "abhi",
+      "Lastname": "raj",
+      "Email": "abhi@gmail.com",
+      "Password": "12345678",
+      "id": 9
+    },
+    {
+      "Firstname": "vipul",
+      "Lastname": "mittal",
+      "Email": "vipul@.com",
+      "Password": "12345678",
+      "id": 19
+    },
+    {
+      "Firstname": "bittu",
+      "Lastname": "bhadra",
+      "Email": "bittu@gmail.com",
+      "Password": "bittu123",
+      "id": 20
+    },
+    {
+      "Firstname": "",
+      "Lastname": "",
+      "Email": "",
+      "Password": "",
+      "id": 21
+    },
+    {
+      "Firstname": "Abhiraj",
+      "Lastname": "karv",
+      "Email": "karv@gmail.com",
+      "Password": "12345678",
+      "id": 22
+    },
+    {
+      "Firstname": "h",
+      "Lastname": "h",
+      "Email": "hhhh@.com",
+      "Password": "12345678",
+      "id": 23
+    },
+    {
+      "Firstname": "Abhiraj",
+      "Lastname": "Chaudhary",
+      "Email": "abhiraj.chaudhary@cloudeq.com",
+      "Password": "54656552",
+      "id": 24
+    },
+    {
+      "Firstname": "abhi",
+      "Lastname": "raj",
+      "Email": "abhi@gmail.com",
+      "Password": "12345678",
+      "id": 25
+    },
+    {
+      "Firstname": "a",
+      "Lastname": "b",
+      "Email": "c@gmail.com",
+      "Password": "12345678",
+      "id": 26
+    },
+    {
+      "Firstname": "a",
+      "Lastname": "b",
+      "Email": "c@gmail.com",
+      "Password": "12345678",
+      "id": 27
+    }
+  ]
+}
