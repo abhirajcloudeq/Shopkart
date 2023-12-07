@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Product } from '../products';
+import { Response } from '../response';
 
 @Injectable({
   providedIn: 'root',
@@ -12,8 +13,8 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProductById(productId: string): Observable<Product> {
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE4NjY2NjgsImV4cCI6MTcwMTg3MDI2OH0.1hVEA34AJHuwUJgj8TFJFc7pcyvt43Znn0l_TIX54FU'; 
+  getProductById(productId: string): Observable<Response> {
+    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE5MzU2OTUsImV4cCI6MTcwMTkzOTI5NX0.n3lPa77bG2x2acEtqSgZnMD_GpH8I1ejC-39ei9IX5M'; 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `${accessToken}`,
@@ -21,7 +22,7 @@ export class ProductService {
     const options = { headers: headers };
 
     const url = `${this.apiUrl}/${productId}`;
-    return this.http.get<Product>(url,options);
+    return this.http.get<Response>(url,options);
     ;
   }
 }

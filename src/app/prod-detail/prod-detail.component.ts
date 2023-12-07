@@ -12,12 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class ProductDetailComponent implements OnInit {
-  product: Product = {id: "",
-    title: "",
-    description: "",
-    price: 0,
-    image:''
-  };
+  product: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -30,7 +25,7 @@ export class ProductDetailComponent implements OnInit {
       this.productService.getProductById(productId).subscribe(
         (data) => {
           console.log('Product Data:', data); 
-          this.product = data;
+          this.product = data.data.products;
         },
       );
     });
