@@ -4,9 +4,9 @@ import { Router, RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { NgModel } from '@angular/forms';
-import { CategoryService} from '../service/apidata.service';
-import { AppComponent } from '../app.component';
-import { Category } from '../category';
+import { CategoryService} from '../../service/apidata.service';
+import { AppComponent } from '../../app.component';
+import { Category } from '../../Interface/category';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpHeaders } from '@angular/common/http'
 import { NavBarComponent } from "../nav-bar/nav-bar.component";

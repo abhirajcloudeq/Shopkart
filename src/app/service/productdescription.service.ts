@@ -2,9 +2,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Product } from '../products';
+import { Product } from '../Interface/products';
 import { JsonPipe } from '@angular/common';
-import { Details } from '../details';
+import { Details } from '../Interface/details';
 
 @Injectable({
   providedIn: 'root'
