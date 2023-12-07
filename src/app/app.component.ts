@@ -14,13 +14,15 @@ import { FormGroup } from '@mui/material';
 import { NgModel } from '@angular/forms';
 import { Home2Component } from './home2/home2.component';
 import { FooterComponent } from './footer/footer.component';
+import { CartComponent } from './cart/cart.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent],
+  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent,CartComponent,NavBarComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

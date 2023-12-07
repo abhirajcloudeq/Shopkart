@@ -1,24 +1,21 @@
 // prod-detail.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ProductService } from '../service/product.service';
 import { Product } from '../products';
 import { CommonModule } from '@angular/common';
 import { TruncatePipe } from '../truncate.pipe';
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone:true,
   templateUrl: './prod-detail.component.html',
-  imports: [CommonModule,TruncatePipe]
+  imports: [CommonModule,TruncatePipe,RouterLink,NavBarComponent]
 })
 export class ProductDetailComponent implements OnInit {
-addToCart(_t7: any) {
-throw new Error('Method not implemented.');
-}
-truncateDescription(arg0: any,arg1: number) {
-throw new Error('Method not implemented.');
-}
+
+
   product: Product[] = [];
 
   constructor(

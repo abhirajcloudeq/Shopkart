@@ -13,7 +13,7 @@ export class CategoryService {
 
   getCategories(): Observable<any> {
    
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE5NDM1OTEsImV4cCI6MTcwMTk0NzE5MX0.8uGvJSrHkYM3BpccN9y_1wom21n3fD4of-dXgnIjkaE'; 
+    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE5NTcxMDgsImV4cCI6MTcwMTk2MDcwOH0._5Yjg1YQ_1bt45OGjzADCx0MmG0KrcOwmPwjhbi7mkI'; 
     // const accessToken  = localStorage.getItem("access-token")
     // console.log("accessToken", accessToken)
 
