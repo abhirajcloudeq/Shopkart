@@ -3,6 +3,8 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { Home2Component } from './home2/home2.component';
 import { ProductDetailComponent } from './prod-detail/prod-detail.component';
+import { AboutComponent } from './about/about.component';
+import { ContactComponent } from './contact/contact.component';
 export const routes: Routes = [
     {
         path:'signup',component: SignupComponent
@@ -21,6 +23,13 @@ export const routes: Routes = [
 
 {
     path:'category/:id' , component:ProductDetailComponent
+},
+{
+    path:'about' , component:AboutComponent
+
+},
+{
+    path: 'contact' , component:ContactComponent
 }
 
 ];
