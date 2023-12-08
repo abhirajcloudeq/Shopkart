@@ -29,9 +29,9 @@ throw new Error('Method not implemented.');
   }
 
   login(): void {
-    this.http.get<any>('http://localhost:3000/signup').subscribe(
+    this.http.get<any>('http://172.31.1.135:8000/api/v1/login').subscribe(
       (res: any) => {
-        // console.log("response", res[2]);
+        console.log("response", res[2]);
           const user = res.find((a: any) => {
         // console.log(a)
           console.log(a.Password, a.Email, this.loginform.value.username, this.loginform.value.password)

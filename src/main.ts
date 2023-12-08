@@ -20,10 +20,13 @@ import {AppComponent} from './app/app.component';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { HttpClient } from '@angular/common/http';
+import { AuthGuard } from './app/auth.guard';
+import { AuthService } from './app/service/authentication.service';
 
 bootstrapApplication(AppComponent, {
   providers: [
     importProvidersFrom(HttpClientModule),
-    provideRouter(routes)
+    provideRouter(routes),
+    AuthGuard,AuthService
   ]
 });

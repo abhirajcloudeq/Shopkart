@@ -7,7 +7,6 @@ import { FooterComponent } from "../footer/footer.component";
     selector: 'app-about',
     standalone: true,
     templateUrl: './about.component.html',
-    styleUrl: './about.component.css',
     imports: [CommonModule, NavBarComponent, FooterComponent]
 })
 export class AboutComponent {

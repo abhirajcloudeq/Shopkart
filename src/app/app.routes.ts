@@ -8,16 +8,18 @@ import { ContactComponent } from './Components/contact/contact.component';
 
 import { DetailsComponent } from './Components/details/details.component';
 import { CartComponent } from './Components/cart/cart.component';
+import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
     {
         path: 'signup', component: SignupComponent
     },
     {
-        path: '', component: HomeComponent
+        path: '', component: Home2Component
     },
-    {
-        path: 'home2', component: Home2Component
+    { path: 'home', component: HomeComponent, canActivate: [AuthGuard]
+    
     },
+
     {
         path: 'login', component: HomeComponent
     },

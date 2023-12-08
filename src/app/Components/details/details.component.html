@@ -1,26 +1,38 @@
-<div class="flex group-hover:bg-gray-200 transition duration-300 ease-in-out px-6 rounded overflow-hidden shadow-lg m-4 ml-0">
-    <div class="w-1/2 pr-4 flex items-center">
-        
-
-        <img src="{{product.image}}" alt="{{product.description}}" class="">
+<div class="flex group-hover:bg-gray-200 transition duration-300 ease-in-out px-4 rounded overflow-hidden shadow-lg m-4 m-20 px-8">
+    <div class="w-1/2 pr-4 flex justify-center">
+        <img src="{{product.image}}" alt="{{product.description}}" class="py-10">
     </div>
-    <div class="w-1/2 flex flex-col justify-center ">
-
-        <p class="text-left font-medium text-3xl"> Category:</p>
+    <div class="w-1/2 flex flex-col justify-center  py-10">
+        <p class="text-left font-medium text-3xl "> Category:</p>
         <br>
-
-        <p class="text-left font-medium"> Product Name: {{product.title}}</p>
+        <p class="text-left font-medium" > Product Name: {{product.title}}</p>
         <br>
         <p class=" font-semibold text-2xl">Price: {{product.price}}</p>
         <br>
         <h2 class="font-sans tex-xl mb-2">Description: {{product.description}}</h2>
-       
+        <button (click)="addToCart(product)" class="bg-teal-600 hover:bg-[#f39e3a] text-white py-2 px-3 rounded w-40">
+            Add to Cart
+        </button>
     </div>
-    <app-product-detail></app-product-detail>
 </div>
-<div>
-
-   
+<app-notification></app-notification>
+<h1 class="p-10 text-4xl font-medium text-teal-600"> Related Products </h1>
+<div class="flex justify-center">
+     <div *ngFor="let products of otherproducts" class="max-w-xs w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
+        <a [routerLink]="['/product/'+products.id]" class="block group">
+            <div class="group-hover:bg-gray-200 transition duration-300 ease-in-out px-6 py-4 max-w-xs rounded overflow-hidden shadow-lg m-4 ml-0">
+                <img class="w-full h-40 object-cover mb-2" [src]="products.image" [alt]="products.title">
+                <div class=" mb-2 w-full text-left group-hover:text-blue-500 transition duration-300 ease-in-out ml-0">
+                  <h1>{{ products.title | truncate:10 }}</h1>
+                </div>
+                <div class="text-xl text-gray-900 mb-2">
+                  Price: ${{ products.price }}
+                </div>
+                <button (click)="addToCart(products)" class="bg-teal-600 hover:bg-[#f39e3a] text-white py-2 px-4 rounded">
+                  Add to Cart
+                </button>
+            </div>
+        </a>
+    </div>
 </div>
-
 

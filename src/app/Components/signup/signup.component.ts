@@ -30,13 +30,15 @@ export class SignupComponent implements OnInit {
  }
  signup() {
   console.log('Form data:', this.signupForm.value);
-  this.http.post<any>("http://localhost:3000/signup", this.signupForm.value)
+  this.http.post<any>("http://172.31.1.135:8000/api/v1/signup", {firstName: this.signupForm.value.Firstname, email: this.signupForm.value.Email, lastName: this.signupForm.value.Lastname, password: this.signupForm.value.Password} )
     .subscribe(res => {
       console.log('Response:', res);
       alert("signup successful");
       this.signupForm.reset();
       this.router.navigate(['/login']);
-    },
+    }, err=>{
+      console.log('Error:', err);
+    }
    )
 
 }
