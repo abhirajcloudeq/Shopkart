@@ -7,7 +7,6 @@ import { FooterComponent } from "../footer/footer.component";
     selector: 'app-ordered-products',
     standalone: true,
     templateUrl: './ordered-products.component.html',
-    styleUrl: './ordered-products.component.css',
     imports: [CommonModule, NavBarComponent, FooterComponent]
 })
 export class OrderedProductsComponent {
