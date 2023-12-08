@@ -15,7 +15,7 @@ export class ProductService {
   constructor(private http: HttpClient) {}
 
   getProductById(productId: number): Observable<Details> {
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDE5NTcxMDgsImV4cCI6MTcwMTk2MDcwOH0._5Yjg1YQ_1bt45OGjzADCx0MmG0KrcOwmPwjhbi7mkI'; 
+    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjE0LCJpYXQiOjE3MDIwMjQzNzQsImV4cCI6MTcwMjAyNzk3NH0.OnxMlBfXMaeAH8cxWyo6AXniApOAdCCGnb-Zv9Zs8-Q'; 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `${accessToken}`,

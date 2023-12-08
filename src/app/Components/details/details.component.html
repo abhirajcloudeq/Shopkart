@@ -1,11 +1,26 @@
-<div class=" w-[800px] group-hover:bg-gray-200 transition duration-300 ease-in-out px-6 py-4 rounded overflow-hidden shadow-lg m-4 ml-0 flex py-2 px-6">
-    <div class="w-1/2 pr-4 ">
-        <img src="{{product.image}}" alt="{{product.description}}" class=" ml-0 ">
+<div class="flex group-hover:bg-gray-200 transition duration-300 ease-in-out px-6 rounded overflow-hidden shadow-lg m-4 ml-0">
+    <div class="w-1/2 pr-4 flex items-center">
+        
+
+        <img src="{{product.image}}" alt="{{product.description}}" class="">
     </div>
-    <div class="w-1/2">
-        <p>Name: {{product.title}}</p>
-        <h2 class="text-xl mb-2"> Description : {{product.description}}</h2>
-        <p class="text-lg font-semibold text-teal-600"> Price: {{product.price}}</p>
+    <div class="w-1/2 flex flex-col justify-center ">
+
+        <p class="text-left font-medium text-3xl"> Category:</p>
+        <br>
+
+        <p class="text-left font-medium"> Product Name: {{product.title}}</p>
+        <br>
+        <p class=" font-semibold text-2xl">Price: {{product.price}}</p>
+        <br>
+        <h2 class="font-sans tex-xl mb-2">Description: {{product.description}}</h2>
+       
     </div>
+    <app-product-detail></app-product-detail>
 </div>
+<div>
+
+   
+</div>
+
 
