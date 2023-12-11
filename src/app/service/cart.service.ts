@@ -1,18 +1,17 @@
+// cart.service.ts
 import { Injectable } from '@angular/core';
-import { HttpClient ,HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class CategoryService {
-  private apiUrl = 'http://172.31.1.135:7001/api/v1/products/all-categories';
+export class CartService {
+  private apiUrl = 'http://172.31.1.135:8001/api/v1/add-cart';
 
   constructor(private http: HttpClient) {}
 
-
-  getCategories(): Observable<any> {
-   
+  addToCart(item: any): Observable<any> {
     const accessToken  = localStorage.getItem("access_token");
     // console.log("accessToken", accessToken)
 
@@ -23,10 +22,6 @@ export class CategoryService {
 
     const options = { headers: headers };
 
-    let data =  this.http.get(this.apiUrl, options);
-    console.log("data" , data)
-    return data
-    
+    return this.http.post<any>(this.apiUrl,options, item);
   }
-  
 }

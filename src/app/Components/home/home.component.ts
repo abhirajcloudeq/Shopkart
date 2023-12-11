@@ -29,23 +29,23 @@ throw new Error('Method not implemented.');
   }
 
   login(): void {
-    this.http.get<any>('http://172.31.1.135:8000/api/v1/login').subscribe(
+    this.http.post<any>('http://172.31.1.135:8000/api/v1/login', {
+      email: this.loginform.value.username,
+      password: this.loginform.value.password
+    }).subscribe(
       (res: any) => {
-        console.log("response", res[2]);
-          const user = res.find((a: any) => {
-        // console.log(a)
-          console.log(a.Password, a.Email, this.loginform.value.username, this.loginform.value.password)
-          return a.Email === this.loginform.value.username && a.password === this.loginform.value.Password;
-        });
+        console.log(res);
+        
 
-        if (user) {
-          alert('Welcome!');
+          localStorage.setItem("access_token", (res.accessToken))
+          localStorage.setItem("refresh_token",(res.refreshToken))
+
+          alert('Login successful!');
           this.loginform.reset();
-          this.router.navigate(['home2']);
-        } else {
-          alert('Invalid credentials');
-        }
-      },
+          console.log('Navigating to home2...');
+          this.router.navigate(['/']);
+      }
     );
   }
+  
 }

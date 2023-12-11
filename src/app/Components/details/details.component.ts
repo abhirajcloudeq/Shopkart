@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ProductServ} from '../../service/productdescription.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Product } from '../../Interface/products';
-import { ActivatedRoute, RouterLink, RouterModule } from '@angular/router';
+import { ActivatedRoute, Route, Router, RouterLink, RouterModule } from '@angular/router';
 import { ProductDetailComponent } from "../prod-detail/prod-detail.component";
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
@@ -11,6 +11,7 @@ import { TruncatePipe } from '../../truncate.pipe';
 import { ProductCategories } from '../../service/product.service';
 import { NotificationService } from '../../service/notification.service';
 import { NotificationComponent } from '../notification/notification.component';
+import { CartService } from '../../service/cart.service';
 @Component({
     selector: 'app-details',
     standalone: true,
@@ -26,7 +27,9 @@ export class DetailsComponent implements OnInit {
   constructor(private productService: ProductServ,
     private route: ActivatedRoute,
     private productCategories : ProductCategories,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router,
+    private cartService :CartService
     ) {}
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -52,7 +55,14 @@ export class DetailsComponent implements OnInit {
   
 }
 addToCart(product:any){
-  this.notificationService.showNotification(`Item added to cart.....`)
-  
-  ;}
+  const itemToAdd = { 
+    "userId" : '',
+    "productId" : '',
+    "quantity" : ''
+  };
+
+    this.cartService.addToCart(product).subscribe(
+      (response) => {
+        console.log('Item added to cart successfully:', response);
+      },)}
 }

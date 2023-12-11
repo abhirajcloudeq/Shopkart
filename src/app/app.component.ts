@@ -17,8 +17,7 @@ import { FooterComponent } from './Components/footer/footer.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { ProductDetailComponent } from './Components/prod-detail/prod-detail.component';
-import { AuthGuard } from './auth.guard';
-import { AuthService } from './service/authentication.service';
+
 
 
 

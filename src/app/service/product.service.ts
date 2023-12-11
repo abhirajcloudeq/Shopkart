@@ -14,7 +14,9 @@ export class ProductCategories {
   constructor(private http: HttpClient) {}
 
   getProductById(productId: string): Observable<Response> {
-    const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIxLCJpYXQiOjE3MDIwNTAzMjMsImV4cCI6MTcwMjA1MzkyM30.u_7jOi1Gth_SbBFRmjeKHL7MAgB1POxm06Qq92-c_-k'; 
+    // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIxLCJpYXQiOjE3MDIyODE1MzIsImV4cCI6MTcwMjI4NTEzMn0.yxIWQdO4vmDEimi3Rit5W2Vs7L3IHWPS2bOav_EEQt0'; 
+    const accessToken  = localStorage.getItem("access_token")
+
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `${accessToken}`,

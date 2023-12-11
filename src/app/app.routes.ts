@@ -8,7 +8,6 @@ import { ContactComponent } from './Components/contact/contact.component';
 
 import { DetailsComponent } from './Components/details/details.component';
 import { CartComponent } from './Components/cart/cart.component';
-import { AuthGuard } from './auth.guard';
 export const routes: Routes = [
     {
         path: 'signup', component: SignupComponent
@@ -16,29 +15,27 @@ export const routes: Routes = [
     {
         path: '', component: Home2Component
     },
-    { path: 'home', component: HomeComponent, canActivate: [AuthGuard]
-    
-    },
+   
 
     {
         path: 'login', component: HomeComponent
     },
 
     {
-        path: 'category/:id', component: ProductDetailComponent
+        path: 'category/:id', component: ProductDetailComponent,
     },
     {
-        path: 'about', component: AboutComponent
+        path: 'about', component: AboutComponent,
 
     },
     {
-        path: 'contact', component: ContactComponent
+        path: 'contact', component: ContactComponent,
     },
     {
-        path: 'product/:id', component: DetailsComponent
+        path: 'product/:id', component: DetailsComponent,
     },
     {
-        path: 'Cart', component: CartComponent
+        path: 'Cart', component: CartComponent,
     }
 
 ];
