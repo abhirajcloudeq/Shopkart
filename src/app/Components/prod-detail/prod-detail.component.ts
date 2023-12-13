@@ -1,26 +1,22 @@
 // prod-detail.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ProductCategories } from '../../service/product.service';
-import { Product } from '../../Interface/products';
+import { ActivatedRoute } from '@angular/router';
+import { ProductService } from '../service/product.service';
+import { Products } from '../products';
 import { CommonModule } from '@angular/common';
-import { TruncatePipe } from '../../truncate.pipe';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone:true,
   templateUrl: './prod-detail.component.html',
-  imports: [CommonModule,TruncatePipe,RouterLink,NavBarComponent]
+  imports: [CommonModule]
 })
 export class ProductDetailComponent implements OnInit {
-
-
-  product: Product[] = [];
+  product: Products[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductCategories
+    private productService: ProductService
   ) {}
 
   ngOnInit() {
