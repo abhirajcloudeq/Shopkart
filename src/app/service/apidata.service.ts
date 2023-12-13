@@ -20,6 +20,7 @@ export class CategoryService {
       'Content-Type': 'application/json',
       Authorization: `Bearer ${accessToken}`,
     });
+    console.log(headers);
 
     const options = { headers: headers };
 

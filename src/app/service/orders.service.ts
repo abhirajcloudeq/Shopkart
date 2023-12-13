@@ -5,14 +5,13 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
-export class CartService {
-  private apiUrl = 'http://172.31.1.135:8001/api/v1/add-cart';
+export class OrderService {
+  private apiUrl = 'http://172.31.1.135:8002/api/v1/orders/create-order';
 
   constructor(private http: HttpClient) {}
 
-  addToCart(item: any): Observable<any> {
-    const accessToken  = localStorage.getItem("access_token");
-    // console.log("accessToken", accessToken)
+  placeOrder(orderDetails: any): Observable<any> {
+    const accessToken = localStorage.getItem("access_token");
 
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -21,6 +20,6 @@ export class CartService {
 
     const options = { headers: headers };
 
-    return this.http.post<any>(this.apiUrl,item , options);
+    return this.http.post<any>(this.apiUrl, orderDetails, options);
   }
 }

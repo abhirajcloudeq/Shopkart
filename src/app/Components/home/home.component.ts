@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Home2Component } from '../home2/home2.component';
 
 
@@ -14,9 +14,7 @@ import { Home2Component } from '../home2/home2.component';
   templateUrl: './home.component.html',
 })
 export class HomeComponent implements OnInit {
-selectCategory(arg0: any) {
-throw new Error('Method not implemented.');
-}
+
   public loginform!: FormGroup;
 
   constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) {}
@@ -35,10 +33,30 @@ throw new Error('Method not implemented.');
     }).subscribe(
       (res: any) => {
         console.log(res);
-        
-
           localStorage.setItem("access_token", (res.accessToken))
           localStorage.setItem("refresh_token",(res.refreshToken))
+
+        
+          const accessToken  = localStorage.getItem("access_token");
+          // console.log("accessToken", accessToken)
+      
+          const headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            Authorization: `${accessToken}`,
+          });
+      
+          const options = { headers: headers };
+          console.log (options)
+      
+          // let data =  this.http.get(this.apiUrl, options);
+       
+          this.http.get<any>('http://172.31.1.135:8000/api/v1/user/details', options).subscribe((res:any)=>{
+            console.log(res)
+            console.log (res.userDetails.userId)
+            localStorage.setItem("userId" , (res.userDetails.userId))
+            
+          })
+
 
           alert('Login successful!');
           this.loginform.reset();
@@ -46,6 +64,7 @@ throw new Error('Method not implemented.');
           this.router.navigate(['/']);
       }
     );
+
   }
   
 }

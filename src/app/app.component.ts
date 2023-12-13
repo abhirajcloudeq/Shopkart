@@ -29,7 +29,9 @@ import { ProductDetailComponent } from './Components/prod-detail/prod-detail.com
 })
 export class AppComponent {
   title = 'Shopkart';
-  constructor() {}
+  constructor() {
+    // debugger;
+  }
 
 
  }
