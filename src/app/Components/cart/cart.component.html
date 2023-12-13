@@ -1,145 +1,75 @@
-<app-nav-bar></app-nav-bar>
-
-<div class="mt-14 ml-64">
-  <h1 class="font-semibold text-6xl">Cart</h1>
-  <br /><br />
-  <div class="border p-12 max-w-3xl">
-    <div class="flex justify-between">
-      <div class="py-5 px-6 text-xl flex justify-between items-center">
-        <button (click)="removeitem()" class="hover:bg-red-600 p-2">X</button>
-      </div>
-
-      <div>
-        <div class="p-10 bg-gray-200 rounded-md">
-          <!-- image -->
-        </div>
-      </div>
-      <div>
-        <p class="font-semibold text-gray-800">Price</p>
-        <p class="font-bold"><strong>$2500</strong></p>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800">Quantity</p>
-        <button
-          class="border-gray-50 px-3 bg-slate-100 text-black rounded-md focus:outline-none"
-          ng-click="decrement()"
-        >
-          <p class="font-bold"><strong>-</strong></p>
-        </button>
-        <span class="text-xl">{{ quantity }}</span>
-        <button
-          class="border-gray-50 px-3 bg-slate-100 text-black rounded-md focus:outline-none"
-          ng-click="increment()"
-        >
-          <p class="font-bold"><strong>+</strong></p>
-        </button>
-      </div>
-
-      <div>
-        <p class="font-semibold text-gray-800">Sub Total</p>
-        <p class="font-bold"><strong>$2500</strong></p>
-      </div>
-    </div>
-  </div>
-  <br />
-
-  <h1 class="font-semibold text-4xl ml-52">Cart totals</h1>
-  <br />
-
-  <div class="border-gray-300 border-2 max-w-3xl p-4">
-    <!-- First Row Content -->
-    <div class="flex justify-between">
-      <p class="font-semibold text-gray-800">Sub Total</p>
-      <br />
-      <p class="font-bold"><strong>$2500</strong></p>
-    </div>
-  </div>
-  <div
-    class="border-gray-300 border-2 border-t-0 border-collapse max-w-3xl p-4"
-  >
-    <!-- Second Row Content -->
-    <div class="flex justify-between">
-      <p class="font-semibold text-gray-800">Shipping Charge</p>
-      <br />
-      <p class="font-bold"><strong>$20</strong></p>
-    </div>
-  </div>
-
-  <div
-    class="border-gray-300 border-2 border-t-0 border-collapse max-w-3xl p-4"
-  >
-    <!-- Third Row Content -->
-    <div class="flex justify-between">
-      <p class="font-semibold text-gray-800">Total</p>
-      <br />
-      <p class="font-bold"><strong>$2520</strong></p>
-    </div>
-  </div>
-
-  <div class="ml-64">
-    <button
-      class="bg-black text-white px-10 py-3 m-10 mt-2 ml-72 hover:bg-teal-600"
-      type="submit"
-      (click)="proceedtocheckout()"
-    >
-      Proceed to Checkout
-    </button>
-
-    <div
-      *ngIf="showForm"
-      class="h-screen w-screen fixed top-0 left-0 flex items-center justify-center backdrop-filter backdrop-blur-lg"
-    >
-      <div
-        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center w-auto h-auto z-10 bg-white rounded-md shadow-lg p-4"
-      >
+<div class="mt-14 ml-64" *ngFor="let product of data">
+   
+    <h1 class="font-semibold text-6xl">Cart</h1>
+    <br /><br />   
+  
+    <div class="border p-12 max-w-3xl">
+      <div class="flex justify-between">
         <div class="py-5 px-6 text-xl flex justify-between items-center">
-          <h2>Address Details</h2>
-          <button (click)="toggleModal()" class="hover:bg-red-600 p-2">X</button>
+          <button (click)="removeitem()" class="hover:bg-red-600 p-2">X</button>
         </div>
-        <form
-          class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12"
-        >
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="firstName"
-            type="text"
-            placeholder="First Name"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="lastName"
-            type="text"
-            placeholder="Last Name"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="email"
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="phone"
-            type="text"
-            placeholder="Phone Number"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="address"
-            type="text"
-            placeholder="Address"
-          />
-          <button
-            class="w-32 h-8 bg-black text-white  duration-200 rounded-lg hover:bg-teal-600"
-            type="submit"
-            routerLink="/order"
-          >
-            Place Order
-          </button>
-        </form>
+      
+       
+        <div>
+          <div class="p-10 rounded-md">
+            <img class="w-32 h-32" src={{product.image}} alt="productImage" />
+            <h1 class="font-titleFont font-semibold">{{ product.title }}</h1>
+
+          </div>
+        </div>
+        <div>
+          <p class="font-semibold text-gray-800">Price</p>
+          <p class="font-bold"><strong>{{product.Price}}</strong></p>
+        </div>
+  
+        <div>
+          <p class="font-semibold text-gray-800">Quantity</p>
+          <button class="border-gray-50 px-3 bg-slate-100 text-black rounded-md focus:outline-none" (click)="decrement()" >-</button>
+          <span class="text-xl">{{product.quantity}}</span>
+          <button class="border-gray-50 px-3 bg-slate-100 text-black rounded-md focus:outline-none" (click)="increment()" >+</button>
+        </div>
+  
+        <div>
+          <p class="font-semibold text-gray-800">Sub Total</p>
+          <p class="font-bold"><strong>{{product.quantity * product.price}}</strong></p>
+        </div>
+      </div>
+    </div>
+    <br />
+  
+    <h1 class="font-semibold text-4xl ml-52">Cart totals</h1>
+    <br />
+  
+    <div class="border-gray-300 border-2 max-w-3xl p-4">
+      <!-- First Row Content -->
+      <div class="flex justify-between">
+        <p class="font-semibold text-gray-800">Sub Total</p>
+        <br />
+        <p class="font-bold"><strong>{{product.quantity * product.price}}</strong></p>
+      </div>
+    </div>
+    <div
+      class="border-gray-300 border-2 border-t-0 border-collapse max-w-3xl p-4"
+    >
+      <!-- Second Row Content -->
+      <div class="flex justify-between">
+        <p class="font-semibold text-gray-800">Shipping Charge</p>
+        <br />
+        <p class="font-bold"><strong>$20</strong></p>
+      </div>
+    </div>
+  
+    <div
+      class="border-gray-300 border-2 border-t-0 border-collapse max-w-3xl p-4"
+    >
+      <!-- Third Row Content -->
+      <div class="flex justify-between">
+        <p class="font-semibold text-gray-800">Total</p>
+        <br />
+        <p class="font-bold"><strong>$2520</strong></p>
       </div>
     </div>
   </div>
-</div>
-<app-footer></app-footer>
+
+<app-form></app-form>
+

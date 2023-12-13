@@ -1,42 +1,71 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NavBarComponent } from "../nav-bar/nav-bar.component";
-import { FooterComponent } from "../footer/footer.component";
+import { NavBarComponent } from '../nav-bar/nav-bar.component';
+import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { FormComponent } from './form/form.component';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
-    selector: 'app-cart',
-    standalone: true,
-    templateUrl: './cart.component.html',
-    styleUrl: './cart.component.css',
-    imports: [CommonModule, NavBarComponent, FooterComponent,RouterModule]
+  selector: 'app-cart',
+  standalone: true,
+  templateUrl: './cart.component.html',
+  styleUrl: './cart.component.css',
+  imports: [
+    CommonModule,
+    NavBarComponent,
+    FooterComponent,
+    RouterModule,
+    FormComponent,
+  ],
 })
-export class CartComponent {
-  quantity = 1; 
+export class CartComponent implements OnInit {
 
-  increment = function(quantity:any) {
-    quantity++;
-  };
-  
-  decrement = function(quantity:any) {
-    if (quantity > 1) {
-      quantity--;
-    }
-  };
-
+  data: any = {};
+  quantity = 0;
   showForm: boolean = false;
 
-  proceedtocheckout(){
+ 
+
+  constructor(private httpclient: HttpClient) {
+    this.data = [];
+  }
+
+  ngOnInit(): void {
+    this.getproducts();
+    throw new Error('Method not implemented.');
+  }
+
+  getproducts() {
+    this.httpclient
+      .get('http://localhost:3000/data')
+      .subscribe((result: any) => {
+        console.log(result);
+        this.data = result.userId.products;
+        console.log(this.data)
+      });
+  }
+
+
+  proceedtocheckout() {
     this.showForm = !this.showForm;
   }
 
   toggleModal() {
     this.showForm = !this.showForm;
   }
-  removeitem(){
-    alert('are you sure want to remove item?')
+
+  increment() {
+    this.quantity++;
   }
 
-  
+  decrement() {
+    if (this.quantity > 0) {
+      this.quantity--;
+    }
+  }
 
+  removeitem() {
+    alert('are you sure want to remove item?');
+  }
 }
