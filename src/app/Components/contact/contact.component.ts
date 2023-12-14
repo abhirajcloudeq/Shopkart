@@ -7,8 +7,13 @@ import { FooterComponent } from "../footer/footer.component";
     selector: 'app-contact',
     standalone: true,
     templateUrl: './contact.component.html',
+    styleUrl: './contact.component.css',
     imports: [CommonModule, NavBarComponent, FooterComponent]
 })
 export class ContactComponent {
+
+    imageUrl: string = 'assets/sean-pollock-PhYq704ffdA-unsplash.jpg';
+
+
 
 }
