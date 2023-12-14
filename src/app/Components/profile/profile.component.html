@@ -1,45 +1,116 @@
-<div class="m-20">
+
+<div class="m-20" (click)="onClickOutside($event)">
     <div class="flex h-[500px] max-w-4xl m-auto  rounded-2xl shadow-2xl">
       <div class="bg-teal-600 rounded-2xl basis-1/3 pt-8">
+       
         <div class="h-[200px] rounded-full max-w-[200px] m-auto bg-contain bg-no-repeat bg-[url('https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg')]"></div>
       </div>
       <div class=" bg-white basis-2/3 pt-12 rounded-r-2xl">
-        <div class=" text-4xl max-w-md  m-auto">
-          <h1 class="font-bold">My Profile</h1>
-          <div class="grid grid-cols-2 gap-5 mt-5 ">
+      
+        <div class=" max-w-md  m-auto">
+      <div class="flex space-x-2">
+        <h1 class="font-bold  text-4xl">My Profile</h1>
+        <button  *ngIf="showUpdateButton" class="text-blue-700 hover:bg-blue-700 hover:text-white font-bold  px-2 rounded focus:outline-none focus:shadow-outline"
+  (click)="toggleEditMode()">Update profile</button>
+
+      </div>
+
+
+    <div *ngIf="editMode"   class=" mt-4 h-screen w-screen fixed top-0 left-0 flex items-center justify-center backdrop-filter backdrop-blur-sm">
+      <div
+        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center w-auto h-auto z-10 bg-white rounded-md shadow-lg p-4"
+      >
+      <form
+      class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12"
+    >
+        <h1  class="font-bold text-center text-gray-500">Update Your Details</h1>
+
+      <input [(ngModel)]="editedProfile.timezone"
+      class="shadow appearance-none pl-2  border font-bold rounded-md w-full text-sm py-1 cursor-pointer"
+      id="username"
+      type="text"
+      placeholder="UTC+5:30"
+      value=""
+    />
+      <input [(ngModel)]="editedProfile.firstname"
+      class="shadow pl-2 appearance-none font-bold border rounded-md w-full text-sm cursor-pointer py-1"
+      id="username"
+      type="text"
+      placeholder="Enter First Name"
+     
+    />
+
+      <input  [(ngModel)]="editedProfile.lastname"
+      class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
+      id="username"
+      type="text"
+      placeholder="Enter Last Name"/>
+ 
+      <input  [(ngModel)]="editedProfile.phone" 
+        class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
+        type="text"
+        placeholder="Enter Mobile No"
+      />
+      <input  [(ngModel)]="editedProfile.email"
+      class="shadow appearance-none border pl-2 font-bold rounded-md w-full text-sm   cursor-pointer  py-1"
+      id="username"
+      type="text"
+      placeholder="Enter Email Address"
+    />
+<!-- Other editable fields -->
+<button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+(click)="saveChanges()">Save</button>
+<button class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+(click)="cancelEdit()">Cancel</button>
+</form>
+</div>
+</div>
+
+
+
+
+
+
+
+
+       
+          <div class="grid grid-cols-2 gap-5 mt-5">
             <div>
               <label  class="block text-sm font-bold "   for="username" >  First Name </label>
-              <input
+              <input (focus)="showUpdateButton = true"
                 class="shadow pl-2 appearance-none font-bold border rounded-md w-full text-sm cursor-pointer py-1"
                 id="username"
                 type="text"
                 placeholder="Enter First Name"
+                
                
               />
             </div>
             <div>
               <label class="block text-sm font-bold" for="username" > Last Name </label>
-              <input
+              <input   (focus)="showUpdateButton = true"
                 class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
                 id="username"
                 type="text"
                 placeholder="Enter Last Name"
+             
             
               />
             </div>
             <div>
               <label  class="block text-sm font-bold" for="username">  Time Zone </label>
-              <input
+              <input (focus)="showUpdateButton = true" 
                 class="shadow appearance-none pl-2  border font-bold rounded-md w-full text-sm py-1 cursor-pointer"
                 id="username"
                 type="text"
                 placeholder="UTC+5:30"
                 value=""
+               
               />
             </div>
             <div>
               <label class="block text-sm font-bold" for="username"> Phone No  </label>
-              <input
+              <input   (focus)="showUpdateButton = true"
                 class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
                 type="text"
                 placeholder="Enter Mobile No"
@@ -47,11 +118,12 @@
             </div>
             <div>
               <label class="block text-sm font-bold" for="username"> Email Address </label>
-              <input
+              <input  (focus)="showUpdateButton = true"
                 class="shadow appearance-none border pl-2 font-bold rounded-md w-full text-sm   cursor-pointer  py-1"
                 id="username"
                 type="text"
                 placeholder="Enter Email Address"
+               
               />
             </div>
           </div>
@@ -61,3 +133,6 @@
     </div>
   </div>
  </div>
+
+ 
+

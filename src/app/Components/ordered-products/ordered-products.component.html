@@ -1,92 +1,192 @@
+<br />
+<h1 class="font-semibold text-2xl justify-center flex text-teal-500">
+  Ordered Products
+</h1>
+<br />
 
-<br><br>
-<app-product-list>
-    <div class="bg-teal-200 border-2 rounded-lg pl-5 pr-40 pt-5 pb-10 ml-32 mr-32">
+<div class="flex space-x-4 ml-44">
+  <div
+    class="border-2 border-r-0 border-l-0 border-t-0 shadow-slate-800 shadow-sm ml-40"
+  >
+  <div
+      class="border-2 px-1 py-4  border-r-0 border-l-0 border-t-0 mx-4 overflow-hidden"
+    >
+     <h1 class="font-bold"> Order history</h1>
+    </div>
+
+  
+    <div
+      class="border-2 px-1 py-4 mx-6 border-r-0 border-l-0 border-t-0 shadow-md overflow-hidden"
+    >
     
-       
-        <div class="flex space-x-4">
-            <p class="font-medium"><strong>Name : </strong>Jhon</p>
-            <p class="font-medium"><strong>Address : </strong>Chicago USA</p>
-            <p class="font-medium"><strong>Contact : </strong>(532)434-343-326</p>
-            <p class="font-medium"><strong>Order Date : </strong>12-nov-2023</p>
-            <p class="font-medium"><strong>Email : </strong>jhon123&#64;gmail.com</p>
-           
+      <div class="float-left">
+        <h1 class="font-bold">#48</h1>
+        <h1 class="font-semibold">USD $9000.00</h1>
+        <p>2 items</p>
+      </div>
+
+      <div class="float-right overflow-hidden pt-0">
+        <p class="text-green-600 float-right">Delivered</p>
+        <br />
+        <p class="float-right">{{ currentDate | date : "medium" }}</p>
+      </div>
+    </div>
+
+
+  <div
+  class="border-2 px-1 py-4 mx-6 border-r-0 border-l-0 border-t-0 shadow-md overflow-hidden"
+>
+  <div class="float-left">
+    <h1 class="font-bold text-orange-600">#49</h1>
+    <h1 class="font-semibold">USD $37602.00</h1>
+    <p>2 items</p>
+  </div>
+
+  <div class="float-right overflow-hidden pt-0">
+    <p class="text-green-600 float-right">Delivered</p>
+    <br />
+    <p class="float-right">{{ currentDate | date : "medium" }}</p>
+  </div>
+</div>
+
+<div
+class="border-2 px-1 py-4 mx-6 border-r-0 border-l-0 border-t-0 shadow-md overflow-hidden"
+>
+<div class="float-left">
+  <h1 class="font-bold">#50</h1>
+  <h1 class="font-semibold">USD $6102.00</h1>
+  <p>2 items</p>
+</div>
+
+<div class="float-right overflow-hidden pt-0">
+  <p class="text-green-600 float-right">Delivered</p>
+  <br />
+  <p class="float-right">{{ currentDate | date : "medium" }}</p>
+</div>
+</div>
+
+    <div
+      class="border-2 px-1 py-4 mx-6 border-r-0 border-l-0 border-t-0 shadow-md overflow-hidden"
+    >
+      <div class="float-left">
+        <h1 class="font-bold">#51</h1>
+        <h1 class="font-semibold">USD $14602.00</h1>
+        <p>2 items</p>
+      </div>
+
+      <div class="float-right overflow-hidden pt-0">
+        <p class="text-green-600 float-right">Delivered</p>
+        <br />
+        <p class="float-right">{{ currentDate | date : "medium" }}</p>
+      </div>
+    </div>
+    <div
+    class="border-2 px-1 py-4 mx-6 border-r-0 border-l-0 border-t-0 shadow-md overflow-hidden"
+  >
+    <div class="float-left">
+      <h1 class="font-bold">#52</h1>
+      <h1 class="font-semibold">USD $15015.00</h1>
+      <p>2 items</p>
+    </div>
+
+    <div class="float-right overflow-hidden pt-0">
+      <p class="text-green-600 float-right">Delivered</p>
+      <br />
+      <p class="float-right">{{ currentDate | date : "medium" }}</p>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+  <div class="shadow-slate-800 shadow-sm ">
+    <div class="border-2 border-r-0 border-l-0 border-t-0 py-3 pl-2">
+      <h1 class="font-semibold text-xl">Order #49 (5)</h1>
+    </div>
+    <br />
+
+    <div class="border-2 border-r-0 border-l-0 border-t-0">
+      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
+
+      <div class="flex">
+        <img
+          class="h-32"
+          src="https://5.imimg.com/data5/KM/VW/MY-45002099/mens-winter-jacket.jpg"
+          alt=""
+        />
+
+        <div class="pl-5 pt-2">
+          <h1 class="font-bold">GLUN 50Kg Portable Scale Digita...</h1>
+          <p>1.Blue backlight,4-digit LCD</p>
+          <p>display,clearer readings</p>
+          <br />
+          <p>1 item <strong>.$1500.00</strong></p>
         </div>
-        <p class="font-bold">Total Amount :$450.00</p>
-    
-        <div class="ml-10">
-    
-            <div class=" bg-white   w-64 h-52 pl-3 rounded-lg">
-                <img class=" mt-10 w-36 h-32  pt-2" src="https://5.imimg.com/data5/KM/VW/MY-45002099/mens-winter-jacket.jpg" alt="">
-              <br>
-                <div class="overflow-hidden space-x-3 flex">
-                   <div>
-                    <div class="flex space-x-2"> 
-                        <p class="font-semibold text-gray-800 ">Price</p>
-                        <p class="font-medium">$2500</p>
-                       </div>
-                       <div class="flex space-x-2">
-                        <p class="font-semibold text-gray-800">Sub Total</p>
-                        <p class="font-medium">$2500</p>
-                       </div>
-        
-                   </div>
-                   <div class="flex space-x-2">
-                        <p class="font-semibold text-gray-800">Quantity :</p>
-                        <p class="font-medium">1</p>
-                       </div>
-                </div>
-             </div>
+      </div>
+    </div>
+
+    <div class="border-2 border-r-0 border-l-0 border-t-0">
+      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
+
+      <div class="flex">
+        <img
+          class="h-32 pl-3"
+          src="https://m.media-amazon.com/images/I/51aRcLwwKAL._AC_UL1500_.jpg"
+          alt=""
+        />
+
+        <div class="pl-5 pt-2">
+          <h1 class="font-bold">GLUN 50Kg Portable Scale Digita...</h1>
+          <p>1.Blue backlight,4-digit LCD</p>
+          <p>display,clearer readings</p>
+          <br />
+          <p>1 item <strong>.$1500.00</strong></p>
         </div>
-    
-         </div>
-</app-product-list>
-<br><br>
-<app-product-list>
-    <div class="bg-teal-200 border-2 rounded-lg pl-5 pr-40 pt-5 pb-10 ml-32 mr-32">
-    
-       
-        <div class="flex space-x-4">
-            <p class="font-medium"><strong>Name :</strong>Smaith</p>
-            <p class="font-medium"><strong>Address :</strong>Yew-York USA</p>
-            <p class="font-medium"><strong>Contact :</strong>(422)-4323-4432</p>
-            <p class="font-medium"><strong>Order Date :</strong>13-Dec-2023</p>
-            <p class="font-medium"><strong>Email :</strong>Smith123&#64;gmail.com</p>
-           
+      </div>
+    </div>
+
+    <div class="border-3 border-r-0 border-l-0 border-t-0">
+      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
+      <div class="flex">
+        <img
+          class="h-32 pl-2"
+          src="https://m.media-amazon.com/images/I/516go88UX+L._AC_UY580_.jpg"
+          alt=""
+        />
+
+        <div class="pl-5 pt-2">
+          <h1 class="font-bold">GLUN 50Kg Portable Scale Digita...</h1>
+          <p>1.Blue backlight,4-digit LCD</p>
+          <p>display,clearer readings</p>
+          <br />
+          <p>1 item <strong>.$1500.00</strong></p>
         </div>
-        <p class="font-bold">Total Amount :</p>
-    
-        <div class="ml-10">
-    
-            <div class=" bg-white   w-64 h-52 pl-3 rounded-lg">
-                <img class=" mt-10 w-36 h-32  pt-2" src="https://www.jiomart.com/images/product/original/rv19vz9adl/bruton-trendy-sports-shoes-for-men-blue-product-images-rv19vz9adl-0-202209021252.jpg?im=Resize=(1000,1000)" alt="">
-              <br>
-                <div class="overflow-hidden space-x-3 flex">
-                   <div>
-                    <div class="flex space-x-2"> 
-                        <p class="font-semibold text-gray-800 ">Price</p>
-                        <p class="font-medium">$340</p>
-                       </div>
-                       <div class="flex space-x-2">
-                        <p class="font-semibold text-gray-800">Sub Total</p>
-                        <p class="font-medium">$340</p>
-                       </div>
-        
-                   </div>
-                   <div class="flex space-x-2">
-                        <p class="font-semibold text-gray-800">Quantity :</p>
-                        <p class="font-medium">1</p>
-                       </div>
-                </div>
-             </div>
+      </div>
+    </div>
+
+    <div class="border-2 border-r-0 border-l-0 ">
+      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
+      <div class="flex">
+        <img
+          class="h-32"
+          src="https://5.imimg.com/data5/OT/ET/MY-55314888/mens-cotton-jacket.jpg"
+          alt=""
+        />
+
+        <div class="pl-5 pt-2">
+          <h1 class="font-bold">Solid Black Men's Cotton Jacket</h1>
+          <p>Riding on unfathomable <br> volumes of industrial expertise,<br>
+             we are providing a broad array of Mens Cotton Jacket.</p>
+          
+          <br />
+          <p>1 item <strong>.$1500.00</strong></p>
         </div>
-    
-         </div>
-</app-product-list>
-<br><br>
-
-
-
-    
-
-
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br />
