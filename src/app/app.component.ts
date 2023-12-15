@@ -24,7 +24,7 @@ import { ProductDetailComponent } from './Components/prod-detail/prod-detail.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent,CartComponent,NavBarComponent,ProductDetailComponent],
+  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent,CartComponent,NavBarComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {
