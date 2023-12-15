@@ -8,7 +8,7 @@ import { Response } from '../Interface/response';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductCategories {
+export class ProductService {
   private apiUrl = 'http://172.31.1.135:7001/api/v1/products/categories';
 
   constructor(private http: HttpClient) {}

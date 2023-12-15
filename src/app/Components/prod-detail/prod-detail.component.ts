@@ -1,8 +1,8 @@
 // prod-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ProductService } from '../service/product.service';
-import { Products } from '../products';
+import { ProductService } from '../../service/product.service';
+import { Product } from '../../Interface/products';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 export class ProductDetailComponent implements OnInit {
-  product: Products[] = [];
+  product: Product[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -23,7 +23,7 @@ export class ProductDetailComponent implements OnInit {
     this.route.params.subscribe(params => {
       const productId = params['id']; 
       this.productService.getProductById(productId).subscribe(
-        (data: { data: { products: Products[]; }; }) => {
+        (data) => {
           console.log('Product Data:', data); 
           this.product = data.data.products;
         },
