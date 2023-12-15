@@ -14,6 +14,7 @@ import { FormGroup } from '@mui/material';
 import { NgModel } from '@angular/forms';
 import { Home2Component } from './Components/home2/home2.component';
 import { FooterComponent } from './Components/footer/footer.component';
+import { CartComponent } from './Components/cart/cart.component';
 import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 import { ProductDetailComponent } from './Components/prod-detail/prod-detail.component';
 
@@ -23,7 +24,7 @@ import { ProductDetailComponent } from './Components/prod-detail/prod-detail.com
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent,NavBarComponent,ProductDetailComponent],
+  imports: [CommonModule, RouterOutlet,FormsModule,MatIconModule,RouterModule,SignupComponent,Home2Component,FooterComponent,CartComponent,NavBarComponent,ProductDetailComponent],
   templateUrl: './app.component.html',
 })
 export class AppComponent {

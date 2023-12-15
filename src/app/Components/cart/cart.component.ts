@@ -4,13 +4,13 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { FormComponent } from './form/form.component';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { CartService } from '../../service/get-cart.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-cart',
   standalone: true,
   templateUrl: './cart.component.html',
+  styleUrl: './cart.component.css',
   imports: [
     CommonModule,
     NavBarComponent,
@@ -20,37 +20,30 @@ import { CartService } from '../../service/get-cart.service';
   ],
 })
 export class CartComponent implements OnInit {
-calculateTotal() :number{
-  const shippingCharge = 20;
-
-  const subtotal = this.cartProducts.reduce(
-    (total, product) => total + product.quantity * product.price,
-    0
-  );
-
-  return subtotal + shippingCharge;}
 
   data: any = {};
   quantity = 0;
   showForm: boolean = false;
 
-  cartProducts: any[] = [];
+ 
 
-
-  constructor(private http: HttpClient,private cartservice:CartService) {}  
-
-  ngOnInit(): void {
-    this.fetchCartProducts();
-
+  constructor(private httpclient: HttpClient) {
+    this.data = [];
   }
 
-  fetchCartProducts(): void {
-    this.cartservice.getCartProductsByUserId().subscribe(
-      (data) => {
-        this.cartProducts = data[0].products;
-      },
-      
-    );
+  ngOnInit(): void {
+    this.getproducts();
+    throw new Error('Method not implemented.');
+  }
+
+  getproducts() {
+    this.httpclient
+      .get('http://localhost:3000/data')
+      .subscribe((result: any) => {
+        console.log(result);
+        this.data = result.userId.products;
+        console.log(this.data)
+      });
   }
 
 
