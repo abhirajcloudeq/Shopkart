@@ -7,7 +7,7 @@ import { ProductDetailComponent } from "../prod-detail/prod-detail.component";
 import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { TruncatePipe } from '../../truncate.pipe';
-import { ProductCategories } from '../../service/product.service';
+import { ProductService } from '../../service/product.service';
 import { NotificationComponent } from '../notification/notification.component';
 import { CartService } from '../../service/cart.service';
 import { Login } from '@mui/icons-material';
@@ -24,7 +24,7 @@ export class DetailsComponent implements OnInit {
 
   constructor(private productService: ProductServ,
     private route: ActivatedRoute,
-    private productCategories: ProductCategories,
+    private productCategories: ProductService,
     private cartService: CartService    
     ) { }
 

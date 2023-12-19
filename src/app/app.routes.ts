@@ -9,13 +9,13 @@ import { ContactComponent } from './Components/contact/contact.component';
 import { DetailsComponent } from './Components/details/details.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderedProductsComponent } from './Components/ordered-products/ordered-products.component';
-import { AuthGuard } from './auth.guard';
+import { authGuard } from './auth.guard';
 export const routes: Routes = [
     {
-        path: 'signup', component: SignupComponent
+        path: 'signup', component: SignupComponent, canActivate:[authGuard]
     },
     {
-        path: '', component: Home2Component,canActivate: [AuthGuard]
+        path: '', component: Home2Component,canActivate: [authGuard]
     },
    
 
@@ -24,23 +24,23 @@ export const routes: Routes = [
     },
 
     {
-        path: 'category/:id', component: ProductDetailComponent, canActivate: [AuthGuard]
+        path: 'category/:id', component: ProductDetailComponent, canActivate: [authGuard]
     },
     {
-        path: 'about', component: AboutComponent,canActivate: [AuthGuard]
+        path: 'about', component: AboutComponent,canActivate: [authGuard]
 
     },
     {
-        path: 'contact', component: ContactComponent, canActivate: [AuthGuard]
+        path: 'contact', component: ContactComponent, canActivate: [authGuard]
     },
     {
-        path: 'product/:id', component: DetailsComponent,canActivate: [AuthGuard]
+        path: 'product/:id', component: DetailsComponent,canActivate: [authGuard]
     },
     {
-        path: 'Cart', component: CartComponent,canActivate: [AuthGuard]
+        path: 'Cart', component: CartComponent,canActivate: [authGuard]
     },
     {
-        path: 'order', component:OrderedProductsComponent,canActivate: [AuthGuard]
+        path: 'order', component:OrderedProductsComponent,canActivate: [authGuard]
     },
     { path: '', redirectTo: '/', pathMatch: 'full' },
 

@@ -48,7 +48,6 @@ export class HomeComponent implements OnInit {
           const options = { headers: headers };
           console.log (options)
       
-          // let data =  this.http.get(this.apiUrl, options);
        
           this.http.get<any>('http://172.31.1.135:8000/api/v1/user/details', options).subscribe((res:any)=>{
             console.log(res)

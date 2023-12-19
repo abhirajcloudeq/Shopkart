@@ -1,15 +1,14 @@
-
-<div class="relative h-screen ">
-    <img class=" bg-opacity-10 absolute inset-0 h-full w-full object-cover blur-sm " [src]="" alt="Background Image" />
+<div class="h-screen relative">
+    <img class=" absolute inset-0 h-full w-full object-cover blur-sm  " [src]="imageUrl" alt="Background Image" />
+    <div class="absolute inset-0 bg-black opacity-30"></div>
     <div class="absolute inset-0 m-28 items-center text-white  ">
         <div class="justify-start">
-            <h1 class="font-bold text-3xl  ">About Us!!</h1>
-        <br><br>
-        <p class="font-semibold">E-comm website where you can buy multiple products and keep them private with <br>
+            <h1 class="font-bold text-3xl text-white font-sans ">About Us!!</h1>
+        <br>
+        <p class="font-semibold text-white font-sans">E-comm website where you can buy multiple products and keep them private with <br>
              your login and passwords!!!</p>
-        <button class=" border-white border-2  bg-teal-500 text-white font-semibold rounded-lg px-2 py-1  mt-2" type="submit">Shop now</button>
-        </div>
+        <button class=" border-white border-2 font-sans bg-teal-500 text-white font-semibold rounded-lg px-2 py-1  mt-2" type="submit">
+            <a [routerLink]="['']" ></a>            Shop now</button>
     </div>
 </div>
-
-
+  </div>

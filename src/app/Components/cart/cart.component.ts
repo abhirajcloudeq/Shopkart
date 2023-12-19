@@ -1,53 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { NavBarComponent } from '../nav-bar/nav-bar.component';
-import { FooterComponent } from '../footer/footer.component';
-import { RouterModule } from '@angular/router';
+import { CartService } from '../../service/get-cart.service';
 import { FormComponent } from './form/form.component';
-import { HttpClient } from '@angular/common/http';
-
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { Map } from '@mui/icons-material';
 @Component({
   selector: 'app-cart',
   standalone: true,
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.css',
-  imports: [
-    CommonModule,
-    NavBarComponent,
-    FooterComponent,
-    RouterModule,
-    FormComponent,
-  ],
+  imports: [ CommonModule,RouterLink,FormComponent],
+
+
 })
 export class CartComponent implements OnInit {
-
-  data: any = {};
+  getTotalPrice(): number {
+    return this.data?.reduce((total: any, product: { price: any; }) => total + product.price, 0);
+  }
+  data: any = [];
   quantity = 0;
   showForm: boolean = false;
 
- 
-
-  constructor(private httpclient: HttpClient) {
-    this.data = [];
-  }
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.getproducts();
-    throw new Error('Method not implemented.');
+    this.getProducts();
   }
 
-  getproducts() {
-    this.httpclient
-      .get('http://localhost:3000/data')
-      .subscribe((result: any) => {
-        console.log(result);
-        this.data = result.userId.products;
-        console.log(this.data)
-      });
+  getProducts() {
+    const userId: any = localStorage.getItem("userId");
+
+    this.cartService.getCartProductsByUserId(userId).subscribe(
+      (result: any) => {
+        this.data = result[0].products;
+        console.log("data", this.data);
+      },
+
+    );
   }
 
-
-  proceedtocheckout() {
+  proceedToCheckout() {
     this.showForm = !this.showForm;
   }
 
@@ -55,17 +46,71 @@ export class CartComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
-  increment() {
-    this.quantity++;
+
+  removeItem(productId: string) {
+    const userId: any = localStorage.getItem("userId");
+
+    this.cartService.removeProductFromCart(userId, productId).subscribe(
+      (result: any) => {
+        console.log("Item removed successfully");
+      },
+
+    );
+
+    this.cartService.getCartProductsByUserId(userId).subscribe(
+      (result: any) => {
+        this.data = result[0].products;
+        console.log("data", this.data);
+      },
+
+    );
   }
 
-  decrement() {
-    if (this.quantity > 0) {
-      this.quantity--;
-    }
+
+
+  increment(productId: any, quantity: any) {
+    const userId: any = localStorage.getItem("userId");
+    const newQuantity = quantity + 1;
+
+    this.cartService.incrementProductQuantity(userId, productId, newQuantity).subscribe(
+      (result: any) => {
+        this.data = result.products;
+        console.log("Quantity incremented successfully", this.data);
+      },
+
+    );
+
+    this.cartService.getCartProductsByUserId(userId).subscribe(
+      (result: any) => {
+        this.data = result[0].products;
+        console.log("data", this.data);
+      },
+
+    );
   }
 
-  removeitem() {
-    alert('are you sure want to remove item?');
+  decrement(productId: any, quantity: any) {
+    const userId: any = localStorage.getItem("userId");
+    const newQuantity = quantity - 1;
+    this.cartService.decrementProductQuantity(userId, productId, newQuantity).subscribe(
+      (result: any) => {
+        this.data = result.products;
+        console.log("Quantity decremented successfully", this.data);
+      },
+
+    );
+    this.cartService.getCartProductsByUserId(userId).subscribe(
+      (result: any) => {
+        this.data = result[0].products;
+        console.log("data", this.data);
+      },
+
+    );
+
   }
+  isCartEmpty(): boolean {
+    return this.data.length === 0;
+  }
+
+
 }

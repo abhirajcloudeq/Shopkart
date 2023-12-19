@@ -1,65 +1,28 @@
 <div class="ml-96">
-    <button
-      class="bg-black text-white px-10 py-3 m-10 mt-2 ml-72 hover:bg-teal-600"
-      type="submit"
-      (click)="proceedtocheckout()"
-    >
-      Proceed to Checkout
-    </button>
+  <button class="bg-black text-white px-10 py-3 m-10 mt-2 ml-72 hover:bg-teal-600" type="submit"
+    (click)="proceedtocheckout()">
+    Proceed to Checkout
+  </button>
 
+  <div *ngIf="showForm"
+    class="h-screen w-screen fixed top-0 left-0 flex items-center justify-center backdrop-filter backdrop-blur-lg">
     <div
-      *ngIf="showForm"
-      class="h-screen w-screen fixed top-0 left-0 flex items-center justify-center backdrop-filter backdrop-blur-lg"
-    >
-      <div
-        class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center w-auto h-auto z-10 bg-white rounded-md shadow-lg p-4"
-      >
-        <div class="py-5 px-6 text-xl flex justify-between items-center">
-          <h2>Address Details</h2>
-          <button (click)="toggleModal()" class="hover:bg-red-600 p-2">X</button>
-        </div>
-        <form
-          class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12"
-        >
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="firstName"
-            type="text"
-            placeholder="First Name"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="lastName"
-            type="text"
-            placeholder="Last Name"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="email"
-            type="email"
-            placeholder="Email"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="phone"
-            type="text"
-            placeholder="Phone Number"
-          />
-          <input
-            class="bg-slate-200 px-2 py-1 rounded-lg"
-            name="address"
-            type="text"
-            placeholder="Address"
-          />
-          <button
-            class="w-32 h-8 bg-black text-white  duration-200 rounded-lg hover:bg-teal-600"
-            type="submit"
-            [routerLink]="['/order']"
-          >
-            Place Order
-          </button>
-        </form>
+      class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center w-auto h-auto z-10 bg-white rounded-md shadow-lg p-4">
+      <div class="py-5 px-6 text-xl flex justify-between items-center">
+        <h2>Address Details</h2>
+        <button (click)="toggleModal()" class="hover:bg-red-600 p-2">X</button>
       </div>
+      <form [formGroup]="orderForm" class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12" (ngSubmit)="onSubmit()" ngNativeValidate>
+        <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="firstName" required type="text" placeholder="First Name" />
+        <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="lastName" required type="text" placeholder="Last Name" />
+        <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="email"  required type="email" placeholder="Email" />
+        <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="phone" required type="text" placeholder="Phone Number" />
+        <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="address" required type="text" placeholder="Address" />
+        <button class="w-32 h-8 bg-black text-white  duration-200 rounded-lg hover:bg-teal-600" type="submit" (click)="onSubmit()">
+          Place Order
+        </button>
+      </form>
+      
     </div>
   </div>
-
+</div>

@@ -36,12 +36,14 @@ export class AuthService {
       
       if(res.userDetails.userId){
         this.isLoggedIn = true;
+      localStorage.setItem("userId", res.userDetails.userId);
+
       }
       else{
         this.isLoggedIn = false;
+        
       }
 
-      localStorage.setItem("userId", res.userDetails.userId);
     });
   }
 }

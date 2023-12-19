@@ -10,5 +10,5 @@ import { FooterComponent } from "../footer/footer.component";
     imports: [CommonModule, NavBarComponent, FooterComponent]
 })
 export class ContactComponent {
-
+    imageUrl: string = 'assets/sean-pollock-PhYq704ffdA-unsplash.jpg';
 }
