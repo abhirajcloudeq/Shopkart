@@ -1,86 +1,35 @@
-<div class="shadow-slate-800 shadow-sm ">
-    <div class="border-2 border-r-0 border-l-0 border-t-0 py-3 pl-2  ">
-      <h1 class=" text-xl font-bold">Order #157 (5)</h1>
-    </div>
-    <br />
-
-    <div class="border-2 border-r-0 border-l-0 border-t-0">
-      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
-
-      <div class="flex">
-        <img
-          class="h-28 mt-2 ml-1"
-          src="https://m.media-amazon.com/images/I/41NOKPCVM7L._SX300_SY300_QL70_FMwebp_.jpg"
-          alt=""
-        />
-
-        <div class="pl-5 ">
-          <h1 class="font-bold">OnePlus 11R 5G </h1>
-          <p class="font-medium">(Galactic Silver, 16GB RAM, 256GB Storage)</p>
-          <p class="font-normal" >Camera: 108 MP Main Camera with EIS; 2MP 
-          </p>
-          <br />
-          <p>1 item <strong>.$1500.00</strong></p>
+<div class="rounded-md 2xl:p-7 2xl:flex 2xl:flex-row 2xl:gap-5 2xl:w-[1300px] xl:[600px] float-right">
+  <div class="shadow-lg w-[900px] rounded-lg 2xl:my-[0] sm:my-[40px]">
+    
+    <div *ngFor="let order of orders" class="shadow-slate-800 shadow-sm p-4 mb-4">
+      
+      <div class="flex justify-between items-center mb-4">
+        <div class="text-[24px] font-bold">
+          Order #{{ order.orderId }} ({{ order.products.length }} items)
+          <p class="font-normal">Address: {{order.address}}</p>
+        </div>
+        
+        <div class="text-sm text-gray-500">
+          {{ formatDate(order.date) }}
         </div>
       </div>
-    </div>
-
-    <div class="border-2 border-r-0 border-l-0 border-t-0">
-      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
-
-      <div class="flex">
-        <img
-          class="h-28 mt-3 ml-6"
-          src="https://rukminim2.flixcart.com/image/416/416/xif0q/mobile/6/v/0/c51-mzb0dxkin-poco-original-imagzdpycgrcdc8z.jpeg?q=70"
-          alt=""
-        />
-
-        <div class="pl-5 pt-2">
-          <h1 class="font-bold">OnePlus 11R 5G </h1>
-          <p class="font-medium">(Galactic Silver, 16GB RAM, 256GB Storage)</p>
-          <p class="font-normal" >Camera: 108 MP Main Camera with EIS; 2MP 
-          </p>
-          <br />
-          <p>1 item <strong>.$1500.00</strong></p>
+      
+      <div *ngFor="let product of order.products" class="flex items-center justify-between border-b-2 pb-4">
+        
+        <div class="flex items-center space-x-4">
+          <img *ngIf="product.image" [src]="product.image" class="h-[100px] w-[100px] rounded" alt="Product Image" />
+          
+          <div>
+            <h1 class="font-bold">{{ product.title | truncate:3 }}</h1>
+            <p class="text-gray-600">{{ product.description | truncate:5 }}</p>
+            <p>{{ product.quantity }} item <strong>.${{ product.price }}</strong></p>
+          </div>
         </div>
+        
+        <div class="text-xl font-bold">${{ product.price }}</div>
       </div>
+      
     </div>
-
-    <div class="border-3 border-r-0 border-l-0 border-t-0">
-      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
-      <div class="flex">
-        <img
-          class="h-28 mt-2 ml-1"
-          src="https://m.media-amazon.com/images/I/41kyuER2HjL._SX300_SY300_QL70_FMwebp_.jpg"
-          alt=""
-        />
-
-        <div class="pl-5 pt-2">
-          <h1 class="font-bold">OnePlus 11R 5G </h1>
-          <p class="font-medium">(Galactic Silver, 16GB RAM, 256GB Storage)</p>
-          <p class="font-normal" >Camera: 108 MP Main Camera with EIS; 2MP 
-          </p>
-          <br />
-          <p>1 item <strong>.$1500.00</strong></p>
-        </div>
-      </div>
-    </div>
-
-    <div class="border-2 border-r-0 border-l-0 ">
-      <h1 class="float-right font-bold pl-52 pr-3">$1500.00</h1>
-      <div class="flex">
-        <img
-          class="h-28 mt-2 ml-1"
-          src="https://m.media-amazon.com/images/I/41NOKPCVM7L._SX300_SY300_QL70_FMwebp_.jpg"
-          alt=""
-        />
-
-        <div class="pl-5 pt-2">
-          <h1 class="font-bold">Solid Black Men's Cotton Jacket</h1>
-          <p>Riding on unfathomable <br> volumes of industrial expertise,<br>
-             we are providing a broad array of Mens Cotton Jacket.</p>
-          <p>1 item <strong>.$1500.00</strong></p>
-        </div>
-      </div>
-    </div>
+    
   </div>
+</div>
