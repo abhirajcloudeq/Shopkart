@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Home2Component } from '../home2/home2.component';
+import { AuthService } from '../../service/authentication.service';
 
 
 @Component({
@@ -16,8 +17,9 @@ import { Home2Component } from '../home2/home2.component';
 export class HomeComponent implements OnInit {
 
   public loginform!: FormGroup;
+  
 
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router) {}
+  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.loginform = this.formbuilder.group({
@@ -53,14 +55,19 @@ export class HomeComponent implements OnInit {
             console.log(res)
             console.log (res.userDetails.userId)
             localStorage.setItem("userId" , (res.userDetails.userId))
+            alert('Login successful!');
+            this.authService.login()
+          
+            
+            this.router.navigate(['/']);
+
+            this.loginform.reset();
+            console.log('Navigating to home2...');
             
           })
 
 
-          alert('Login successful!');
-          this.loginform.reset();
-          console.log('Navigating to home2...');
-          this.router.navigate(['/']);
+
       }
     );
 

@@ -17,8 +17,18 @@ import { AuthService } from '../../service/authentication.service';
   templateUrl: './nav-bar.component.html',
 })
 export class NavBarComponent {
+
+
+
+
   constructor(private authService: AuthService, private router: Router) { }
+  
+  
+  isLoggedIn:boolean = true;
+  
+
   logout() {
+    this.authService.isLoggedIn=false,
     this.authService.logout();
     this.router.navigate(['/login']);
     localStorage.removeItem("userId"),

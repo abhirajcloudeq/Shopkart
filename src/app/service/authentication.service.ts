@@ -15,12 +15,13 @@ export class AuthService {
   });
 
   options = { headers: this.headers };
+ 
 
   constructor(private http: HttpClient) {
     this.getUserDetails();
   }
 
-  isLoggedIn = false;
+  isLoggedIn:boolean = false;
 
   login() {
     this.isLoggedIn = true;
@@ -33,17 +34,13 @@ export class AuthService {
   getUserDetails() {
     this.http.get<any>(this.apiUrl, this.options).subscribe((res: any) => {
       console.log(res);
-      
-      if(res.userDetails.userId){
+
+      if (res.userDetails.userId) {
         this.isLoggedIn = true;
-      localStorage.setItem("userId", res.userDetails.userId);
-
-      }
-      else{
+        localStorage.setItem("userId", res.userDetails.userId);
+      } else {
         this.isLoggedIn = false;
-        
       }
-
     });
   }
 }

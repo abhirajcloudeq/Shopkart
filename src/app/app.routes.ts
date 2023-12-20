@@ -10,15 +10,14 @@ import { DetailsComponent } from './Components/details/details.component';
 import { CartComponent } from './Components/cart/cart.component';
 import { OrderedProductsComponent } from './Components/ordered-products/ordered-products.component';
 import { authGuard } from './auth.guard';
+import { NavBarComponent } from './Components/nav-bar/nav-bar.component';
 export const routes: Routes = [
     {
-        path: 'signup', component: SignupComponent, canActivate:[authGuard]
+        path: 'signup', component: SignupComponent,
     },
     {
         path: '', component: Home2Component,canActivate: [authGuard]
     },
-   
-
     {
         path: 'login', component: HomeComponent,
     },
@@ -27,14 +26,14 @@ export const routes: Routes = [
         path: 'category/:id', component: ProductDetailComponent, canActivate: [authGuard]
     },
     {
-        path: 'about', component: AboutComponent,canActivate: [authGuard]
+        path: 'about', component: AboutComponent, canActivate: [authGuard]
 
     },
     {
         path: 'contact', component: ContactComponent, canActivate: [authGuard]
     },
     {
-        path: 'product/:id', component: DetailsComponent,canActivate: [authGuard]
+        path: 'product/:id', component: DetailsComponent, canActivate: [authGuard]
     },
     {
         path: 'Cart', component: CartComponent,canActivate: [authGuard]
@@ -42,7 +41,8 @@ export const routes: Routes = [
     {
         path: 'order', component:OrderedProductsComponent,canActivate: [authGuard]
     },
-    { path: '', redirectTo: '/', pathMatch: 'full' },
+
+    { path: 'navbar', component: NavBarComponent, outlet: 'navbar' },
 
 ];
 
