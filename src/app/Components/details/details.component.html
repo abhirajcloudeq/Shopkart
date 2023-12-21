@@ -7,7 +7,7 @@
         <br>
         <p class="text-left font-medium" > Product Name: {{product.title}}</p>
         <br>
-        <p class=" font-semibold text-2xl">Price: {{product.price}}</p>
+        <p class=" font-semibold text-2xl">Price: ₹{{product.price}}</p>
         <br>
         <h2 class="font-sans tex-xl mb-2">Description: {{product.description}}</h2>
         <button (click)="addToCart(product)" class="bg-teal-600 hover:bg-[#f39e3a] text-white py-2 px-3 rounded w-40">
@@ -27,7 +27,7 @@
                   <h1> Name:      {{ products.title | truncate:20 }}</h1>
                 </div>
                 <div class="text-xl text-gray-900 mb-2">
-                  Price: ${{ products.price }}
+                  Price: ₹{{ products.price }}
                 </div>
                 <button (click)="addToCart(products)" class="bg-teal-600 hover:bg-[#f39e3a] text-white py-2 px-4 rounded">
                   Add to Cart

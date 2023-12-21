@@ -8,7 +8,6 @@ import { FormsModule } from '@angular/forms';
     selector: 'app-profile',
     standalone: true,
     templateUrl: './profile.component.html',
-    styleUrl: './profile.component.css',
     imports: [CommonModule, NavBarComponent, FooterComponent,FormsModule]
 })
 export class ProfileComponent {

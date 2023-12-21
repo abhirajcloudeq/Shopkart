@@ -67,7 +67,7 @@
           </div>
 
           <div>
-            <p class="pb-2 font-semibold text-gray-800">Sub Total</p>
+            <p class="pb-2 font-semibold text-gray-800">Total</p>
             <p class="font-bold"><strong>{{ product.quantity * product.price }}</strong></p>
           </div>
         </div>
@@ -82,9 +82,9 @@
       <div class="flex justify-between">
         <p class="font-semibold text-gray-800">Sub Total</p>
         <br />
-        <p class="font-bold"><strong>{{ getTotalPrice() }}</strong></p>
+        <p class="font-bold"><strong>{{ getCartSubtotal()}}</strong></p>
       </div>
-    </div>
+    </div>  
 
     <div class="border-gray-300 border-2 border-t-0 border-collapse max-w-3xl p-4">
       <div class="flex justify-between">

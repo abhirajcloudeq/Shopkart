@@ -5,11 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { AuthService } from '../../service/authentication.service';
 
-
-
-
-
-
 @Component({
   selector: 'app-nav-bar',
   standalone: true,
@@ -17,23 +12,20 @@ import { AuthService } from '../../service/authentication.service';
   templateUrl: './nav-bar.component.html',
 })
 export class NavBarComponent {
+  isLoggedIn: boolean = false;
 
-
-
-
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router) { 
+    this.authService.isLoggedIn$.subscribe(value => {
+      this.isLoggedIn = value;
+    });
+  }
+   
   
-  
-  isLoggedIn:boolean = true;
-  
-
   logout() {
-    this.authService.isLoggedIn=false,
+    this.authService.isLoggedIn$.next(false);  
     this.authService.logout();
     this.router.navigate(['/login']);
-    localStorage.removeItem("userId"),
-      localStorage.removeItem("access_token")
-    localStorage.removeItem("refresh_token")
+    localStorage.clear();
   }
-
+  
 }

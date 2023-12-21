@@ -4,18 +4,15 @@ import { FormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Map } from '@mui/icons-material';
+import { switchMap } from 'rxjs/operators';
+
 @Component({
   selector: 'app-cart',
   standalone: true,
   templateUrl: './cart.component.html',
-  imports: [ CommonModule,RouterLink,FormComponent],
-
-
+  imports: [ CommonModule, RouterLink, FormComponent ],
 })
 export class CartComponent implements OnInit {
-  getTotalPrice(): number {
-    return this.data?.reduce((total: any, product: { price: any; }) => total + product.price, 0);
-  }
   data: any = [];
   quantity = 0;
   showForm: boolean = false;
@@ -28,13 +25,11 @@ export class CartComponent implements OnInit {
 
   getProducts() {
     const userId: any = localStorage.getItem("userId");
-
     this.cartService.getCartProductsByUserId(userId).subscribe(
       (result: any) => {
         this.data = result[0].products;
         console.log("data", this.data);
-      },
-
+      }
     );
   }
 
@@ -46,71 +41,56 @@ export class CartComponent implements OnInit {
     this.showForm = !this.showForm;
   }
 
-
   removeItem(productId: string) {
     const userId: any = localStorage.getItem("userId");
-
-    this.cartService.removeProductFromCart(userId, productId).subscribe(
-      (result: any) => {
-        console.log("Item removed successfully");
-      },
-
-    );
-
-    this.cartService.getCartProductsByUserId(userId).subscribe(
+    this.cartService.removeProductFromCart(userId, productId).pipe(
+      switchMap(() => this.cartService.getCartProductsByUserId(userId))
+    ).subscribe(
       (result: any) => {
         this.data = result[0].products;
-        console.log("data", this.data);
-      },
-
+        console.log("Item removed successfully", this.data);
+      }
     );
   }
-
-
 
   increment(productId: any, quantity: any) {
     const userId: any = localStorage.getItem("userId");
     const newQuantity = quantity + 1;
-
-    this.cartService.incrementProductQuantity(userId, productId, newQuantity).subscribe(
-      (result: any) => {
-        this.data = result.products;
-        console.log("Quantity incremented successfully", this.data);
-      },
-
-    );
-
-    this.cartService.getCartProductsByUserId(userId).subscribe(
+    this.cartService.incrementProductQuantity(userId, productId, newQuantity).pipe(
+      switchMap(() => this.cartService.getCartProductsByUserId(userId))
+    ).subscribe(
       (result: any) => {
         this.data = result[0].products;
-        console.log("data", this.data);
-      },
-
+        console.log("Quantity incremented successfully", this.data);
+      }
     );
   }
 
   decrement(productId: any, quantity: any) {
     const userId: any = localStorage.getItem("userId");
     const newQuantity = quantity - 1;
-    this.cartService.decrementProductQuantity(userId, productId, newQuantity).subscribe(
-      (result: any) => {
-        this.data = result.products;
-        console.log("Quantity decremented successfully", this.data);
-      },
-
-    );
-    this.cartService.getCartProductsByUserId(userId).subscribe(
+    this.cartService.decrementProductQuantity(userId, productId, newQuantity).pipe(
+      switchMap(() => this.cartService.getCartProductsByUserId(userId))
+    ).subscribe(
       (result: any) => {
         this.data = result[0].products;
-        console.log("data", this.data);
-      },
-
+        console.log("Quantity decremented successfully", this.data);
+      }
     );
-
   }
+
   isCartEmpty(): boolean {
     return this.data.length === 0;
   }
 
-
+    getTotalPrice(): number {
+    
+        const subtotal = this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
+        return subtotal + 20; // Assuming the shipping charge is 20
+      }
+      
+  
+  getCartSubtotal(): number {
+    return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
+  }
 }

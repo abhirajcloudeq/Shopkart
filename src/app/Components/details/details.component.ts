@@ -46,7 +46,7 @@ export class DetailsComponent implements OnInit {
           this.productCategories.getProductById(this.categoryId).subscribe(
             (data) => {
               console.log('Product Data:', data);
-              this.otherproducts = data.data.products;
+              this.otherproducts = data.data.products.filter((_, index) => index < 4);
             },
           );
         },

@@ -38,7 +38,6 @@ export class HomeComponent implements OnInit {
           localStorage.setItem("access_token", (res.accessToken))
           localStorage.setItem("refresh_token",(res.refreshToken))
 
-        
           const accessToken  = localStorage.getItem("access_token");
           // console.log("accessToken", accessToken)
       
@@ -49,28 +48,18 @@ export class HomeComponent implements OnInit {
       
           const options = { headers: headers };
           console.log (options)
-      
        
           this.http.get<any>('http://172.31.1.135:8000/api/v1/user/details', options).subscribe((res:any)=>{
-            console.log(res)
-            console.log (res.userDetails.userId)
+            // console.log(res)
+            // console.log (res.userDetails.userId)
             localStorage.setItem("userId" , (res.userDetails.userId))
-            alert('Login successful!');
+            // alert('Login successful!');
             this.authService.login()
-          
-            
             this.router.navigate(['/']);
-
             this.loginform.reset();
             console.log('Navigating to home2...');
-            
           })
-
-
-
       }
     );
-
   }
-  
 }
