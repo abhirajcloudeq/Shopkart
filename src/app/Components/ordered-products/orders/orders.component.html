@@ -26,10 +26,15 @@
         <p class="font-normal">Address: {{selectedOrder.address}}</p>
         <div class="text-sm text-gray-500">
           {{ formatDate(selectedOrder.date) }}
+          <div class="text-xl font-bold pl-4">
+            Total: ₹{{ getSelectedOrderTotal() }}
+          </div>
         </div>
       </div>
       <hr>
       <div *ngFor="let item of selectedOrder.products" class="text-sm text-gray-500">
+        <a [routerLink]="['/product/'+selectedOrder.products.id]" class="block group">
+
         <div class="flex items-center gap-10 space-x-4 h-[200px] w-full p-2">
           <img src="{{item.image}}" class="rounded" alt="Product Image" height="150" width="100">
           <div class="justify-between">
@@ -40,6 +45,7 @@
           <div class="text-xl font-bold pl-4">₹{{ item.price }}</div>
         </div>
         <hr>
+        </a>
       </div>
     </div>
   </div>

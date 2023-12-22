@@ -12,13 +12,13 @@
         <h2>Address Details</h2>
         <button (click)="toggleModal()" class="hover:bg-red-600 p-2">X</button>
       </div>
-      <form [formGroup]="orderForm" class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12" (ngSubmit)="onSubmit()" ngNativeValidate>
+      <form [formGroup]="orderForm" class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12"  ngNativeValidate>
         <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="firstName" required type="text" placeholder="First Name" />
         <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="lastName" required type="text" placeholder="Last Name" />
         <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="email"  required type="email" placeholder="Email" />
         <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="phone" required type="text" placeholder="Phone Number" />
         <input class="bg-slate-200 px-2 py-1 rounded-lg" formControlName="address" required type="text" placeholder="Address" />
-        <button class="w-32 h-8 bg-black text-white  duration-200 rounded-lg hover:bg-teal-600" type="submit" (click)="onSubmit()">
+        <button class="w-32 h-8 bg-black text-white  duration-200 rounded-lg hover:bg-teal-600"  [disabled]="isSubmitting" type="submit" (click)="onSubmit()">
           Place Order
         </button>
       </form>

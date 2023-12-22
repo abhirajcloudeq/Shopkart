@@ -84,13 +84,9 @@ export class CartComponent implements OnInit {
   }
 
     getTotalPrice(): number {
-    
-        const subtotal = this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
-        return subtotal + 20; // Assuming the shipping charge is 20
-      }
-      
-  
-  getCartSubtotal(): number {
-    return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
+    return this.data?.reduce((total: any, product: { price: any; }) => total + product.price, 0);
   }
+  getCartSubtotal(): number {
+  return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
+}
 }

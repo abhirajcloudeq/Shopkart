@@ -1,5 +1,5 @@
 <div class="m-20" (click)="onClickOutside($event)">
-  <div class="flex h-[500px] max-w-4xl m-auto rounded-2xl shadow-2xl">
+  <div class="flex h-[550px] max-w-4xl m-auto rounded-2xl shadow-2xl">
     <div class="bg-teal-600 rounded-2xl basis-1/3 pt-8">
       <div
         class="h-[200px] rounded-full max-w-[200px] m-auto bg-contain bg-no-repeat bg-[url('https://img.freepik.com/premium-vector/young-smiling-man-avatar-man-with-brown-beard-mustache-hair-wearing-yellow-sweater-sweatshirt-3d-vector-people-character-illustration-cartoon-minimal-style_365941-860.jpg')]"
@@ -8,8 +8,7 @@
     <div class="bg-white basis-2/3 pt-12 rounded-r-2xl">
       <div class="max-w-md m-auto">
         <div class="flex space-x-2">
-          <h1 class="font-bold text-4xl">My Profile</h1>
-         
+          <h1 class="font-bold text-4xl">User Profile</h1>
         </div>
 
         <div
@@ -19,8 +18,8 @@
           <div
             class="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 items-center justify-center w-auto h-auto z-10 bg-white rounded-md shadow-lg p-4"
           >
-            <form
-              class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12"
+            <form (ngSubmit)="saveChanges()"
+              class="w-[450px] h-auto py-6 flex flex-col justify-center gap-4 px-12" ngNativeValidate
             >
               <h1 class="font-bold text-center text-gray-500">
                 Update Your Details
@@ -29,25 +28,28 @@
               <input
                 [(ngModel)]="editedProfile.timezone"
                 class="shadow appearance-none pl-2 border font-bold rounded-md w-full text-sm py-1 cursor-pointer"
-                id="username"
+                id="timezone"
                 type="text"
                 placeholder="UTC+5:30"
                 value=""
+                [ngModelOptions]="{standalone: true}"
               />
               <input
                 [(ngModel)]="editedProfile.firstname"
                 class="shadow pl-2 appearance-none font-bold border rounded-md w-full text-sm cursor-pointer py-1"
-                id="username"
+                id="firstname"
                 type="text"
                 placeholder="Enter First Name"
+                [ngModelOptions]="{standalone: true}"
               />
 
               <input
                 [(ngModel)]="editedProfile.lastname"
                 class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
-                id="username"
+                name="lastname"
                 type="text"
                 placeholder="Enter Last Name"
+                [ngModelOptions]="{standalone: true}"
               />
 
               <input
@@ -55,6 +57,7 @@
                 class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
                 type="text"
                 placeholder="Enter Mobile No"
+                [ngModelOptions]="{standalone: true}"
               />
               <input
                 [(ngModel)]="editedProfile.email"
@@ -62,11 +65,12 @@
                 id="username"
                 type="text"
                 placeholder="Enter Email Address"
+                [ngModelOptions]="{standalone: true}"
+                disabled="true"
               />
-              <!-- Other editable fields -->
               <button
                 class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                (click)="saveChanges()"
+             type="submit"
               >
                 Save
               </button>
@@ -79,89 +83,68 @@
             </form>
           </div>
         </div>
+        <br />
 
-        <div class="grid grid-cols-2 gap-5 mt-5">
-          <div>
-            <label class="block text-sm font-bold" for="username">
-              First Name
-            </label>
-            <input
-              (focus)="showUpdateButton = true"
-              class="shadow pl-2 appearance-none font-bold border rounded-md w-full text-sm cursor-pointer py-1"
-              id="username"
-              type="text"
-              placeholder="Enter First Name"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-bold" for="username">
-              Last Name
-            </label>
-            <input
-              (focus)="showUpdateButton = true"
-              class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
-              id="username"
-              type="text"
-              placeholder="Enter Last Name"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-bold" for="username">
-              Time Zone
-            </label>
-            <input
-              (focus)="showUpdateButton = true"
-              class="shadow appearance-none pl-2 border font-bold rounded-md w-full text-sm py-1 cursor-pointer"
-              id="username"
-              type="text"
-              placeholder="UTC+5:30"
-              value=""
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-bold" for="username">
-              Phone No
-            </label>
-            <input
-              (focus)="showUpdateButton = true"
-              class="shadow appearance-none pl-2 border font-bold rounded-md w-full cursor-pointer text-sm py-1"
-              type="text"
-              placeholder="Enter Mobile No"
-            />
-          </div>
-          <div>
-            <label class="block text-sm font-bold" for="username">
-              Email Address
-            </label>
-            <input
-              (focus)="showUpdateButton = true"
-              class="shadow appearance-none border pl-2 font-bold rounded-md w-full text-sm cursor-pointer py-1"
-              id="username"
-              type="text"
-              placeholder="Enter Email Address"
-            />
-          </div>
+        <div>
+          <label class="block text-lg font-bold" for="username">First Name</label>
+          <input
+            [(ngModel)]="profile.firstname"
+            (focus)="showUpdateButton = true"
+            class="shadow pl-2 appearance-none font-sans border rounded-md w-96 text-lg cursor-pointer py-1"
+            id="username"
+            type="text"
+            placeholder="Enter First Name"
+          />
         </div>
+        <br />
+        
+        <div>
+          <label class="block text-lg font-bold" for="username">Last Name</label>
+          <input
+            [(ngModel)]="profile.lastname"
+            (focus)="showUpdateButton = true"
+            class="shadow appearance-none pl-2 border font-sans rounded-md w-96 cursor-pointer text-lg py-1"
+            id="username"
+            type="text"
+            placeholder="Enter Last Name"
+          />
+        </div>
+  
+        <div>
+          <br />
+          <label class="block text-lg font-bold" for="username">Phone No</label>
+          <input
+            (focus)="showUpdateButton = true"
+            class="shadow appearance-none pl-2 border font-sans rounded-md w-96 cursor-pointer text-lg py-2"
+            type="text"
+            placeholder="Enter Mobile No"
+          />
+        </div>
+        <br />
+        <div>
+          <label class="block text-lg font-bold" for="username">Email Address</label>
+          <input
+            [(ngModel)]="profile.email"
+            (focus)="showUpdateButton = true"
+            class="shadow appearance-none border pl-2 font-sans rounded-md w-96 text-lg cursor-pointer py-2"
+            id="username"
+            type="text"
+            placeholder="Enter Email Address"
+            disabled
+          />
+        </div>
+        <br />
+      </div>
+  
+      <div class="ml-72 flex space-x-2">
+        <button
+          class="text-white bg-teal-600 font-bold px-5 py-1 rounded focus:outline-none focus:shadow-outline"
+          (click)="toggleEditMode()"
+        >
+          Edit
+        </button>
+  
         
       </div>
-
-      <div class="pt-20 ml-52">
-        <button
-        *ngIf="showUpdateButton"
-        class="text-blue-700 hover:bg-blue-700 hover:text-white font-bold px-2 rounded focus:outline-none focus:shadow-outline"
-        (click)="toggleEditMode()"
-      >
-        Update profile
-      </button>
-      </div>
-      
     </div>
-    
-    <div>
-      
-    </div>
-
-    
   </div>
- 
-</div>

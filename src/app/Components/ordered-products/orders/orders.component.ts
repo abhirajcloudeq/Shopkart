@@ -35,6 +35,11 @@ export class OrdersComponent implements OnInit {
     this.getOrdersService.getOrders(userId).subscribe(
       data => {
         this.orders = data;
+        this.orders.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        if (this.orders.length > 0) {
+          this.selectedOrder = this.orders[0];
+        }
+
       },
      
     );
@@ -43,7 +48,14 @@ export class OrdersComponent implements OnInit {
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
   }
-  
+  getSelectedOrderTotal(): number {
+    if (!this.selectedOrder || !this.selectedOrder.products) return 0;
+
+    return this.selectedOrder.products.reduce((total: number, product: { price: number; quantity: number; }) => {
+      return total + (product.price * product.quantity);
+    }, 0);
+  }
+
 }
 
 

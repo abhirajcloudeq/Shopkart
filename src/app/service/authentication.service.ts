@@ -36,9 +36,11 @@ export class AuthService {
   getUserDetails() {
     this.http.get<any>(this.apiUrl, this.options).subscribe(
       (res: any) => {
+        console.log("sdfgdfg")
         if (res.userDetails && res.userDetails.userId) {
           localStorage.setItem(this.tokenKey, res.token);
           localStorage.setItem("userId", res.userDetails.userId);
+         
           this.isLoggedIn$.next(true);
         } else {
           this.isLoggedIn$.next(false);

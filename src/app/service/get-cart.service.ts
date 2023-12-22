@@ -12,6 +12,9 @@ export class CartService {
 
   private dataSubject = new Subject<any>();
   data$ = this.dataSubject.asObservable();
+  private cartItemCountSubject = new Subject<number>();
+  cartItemCount$ = this.cartItemCountSubject.asObservable();
+  cartCount: number = 0;
 
   constructor(private http: HttpClient) {}
 
@@ -94,4 +97,9 @@ export class CartService {
   updateData(data: any) {
     this.dataSubject.next(data);
   }
+  updateCartCount(count: number): void {
+    this.cartCount = count;
+    this.cartItemCountSubject.next(this.cartCount);
+  }
+  
 }

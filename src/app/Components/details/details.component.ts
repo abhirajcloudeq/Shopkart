@@ -59,6 +59,7 @@ export class DetailsComponent implements OnInit {
       userId: Number(localStorage.getItem("userId")),
       productId: product.id,
       quantity: 1,
+
     }
     
     this.cartService.addToCart(itemToAdd).subscribe(

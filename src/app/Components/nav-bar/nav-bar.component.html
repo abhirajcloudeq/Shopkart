@@ -26,8 +26,8 @@
         <a [routerLink]="['/']" class="text-white hover:text-teal-300"> Home</a>
         <a [routerLink]="['/about']" class="text-white hover:text-teal-300">About</a>
         <a [routerLink]="['/contact']" class="text-white hover:text-teal-300">Contact</a>
-        <a [routerLink]="['/Cart']" class="text-white hover:text-teal-300">Cart</a>
-        <a [routerLink]="['/order']" class="text-white hover:text-[#f39e3a]">Order</a>
+        <a *ngIf="isLoggedIn" [routerLink]="['/Cart']" class="text-white hover:text-teal-300">Cart</a>
+        <a *ngIf="isLoggedIn" [routerLink]="['/order']" class="text-white hover:text-[#f39e3a]">Order</a>
         
         <a *ngIf="isLoggedIn" [routerLink]="['/profile']" class="text-white hover:text-teal-300">Profile</a>
 

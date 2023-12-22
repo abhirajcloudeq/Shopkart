@@ -53,6 +53,10 @@ export class HomeComponent implements OnInit {
             // console.log(res)
             // console.log (res.userDetails.userId)
             localStorage.setItem("userId" , (res.userDetails.userId))
+            localStorage.setItem("firstName", res.userDetails.firstName);
+            localStorage.setItem("lastName", res.userDetails.lastName);
+            localStorage.setItem("email", res.userDetails.email);
+
             // alert('Login successful!');
             this.authService.login()
             this.router.navigate(['/']);
