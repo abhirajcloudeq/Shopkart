@@ -65,12 +65,8 @@ export class FormComponent {
             address: this.orderForm.value.address,
             contactNo: this.orderForm.value.phone,
             products:
-              products[0].products.map((product:any) => ({
-
-                productId: product.productId,      
-                quantity: product.quantity  
-              }))
-            
+              products
+          
           };
   
           console.log(payload);

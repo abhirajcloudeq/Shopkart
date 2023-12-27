@@ -1,50 +1,86 @@
+
+<div *ngIf="orders.length === 0" class="text-black-500">
+  
+  <div class="relative h-screen">
+    <br />
+    <h1 class="font-semibold text-2xl justify-center flex text-teal-500">
+      Ordered items
+    </h1>
+    
+    <br />
+    
+    <div class="justify-center flex">
+      <div
+        class="justify-center flex shadow-lg w-96 max-w-md pb-10 rounded-lg mt-14"
+      >
+        <div class="justify-center">
+          <div class="space-y-2">
+            <h1 class="font-bold">No Orders Places yet</h1>
+            <button class="bg-primeColor cursor-pointer hover:bg-black active:bg-gray-900 px-8 py-2 font-titleFont font-semibold text-lg text-gray-200 hover:text-white duration-300">
+             
+              <a [routerLink]="['/']">
+                start shopping
+              </a>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br /><br />
+      </div>
+</div>
+
 <div class="rounded-md 2xl:p-7 2xl:flex 2xl:flex-row 2xl:gap-5 2xl:w-[1300px] xl:[600px]">
-    <div class="shadow-lg w-[400px] rounded-lg 2xl:my-[0] sm:my-[40px]
+  <div class="shadow-lg w-[400px] rounded-lg 2xl:my-[0] sm:my-[40px]
     ">
-    <div *ngFor="let order of orders" 
-    class="shadow-slate-800 shadow-sm p-4 mb-4 cursor-pointer"
-    [class.text-orange-500]="selectedOrder === order"
-    (click)="showOrderDetails(order)">
- <div class="flex justify-between items-center mb-4 cursor-pointer">
+    <div *ngFor="let order of orders" class="shadow-slate-800 shadow-sm p-4 mb-4 cursor-pointer"
+      [class.text-orange-500]="selectedOrder === order" (click)="showOrderDetails(order)">
+      <p class="text-xl text-black font-bold pl-4 float-right mb-4">
+        Total Price: {{ getTotalPrice(order.orderId) }}
+      </p>
+
+      <div class="flex justify-between items-center mb-4 cursor-pointer">
         <div class="text-[24px] font-bold">
           Order #{{ order.orderId }} ({{ order.products.length }} items)
-         <div class="flex-row"> <p class="font-normal">Address: {{order.address}}</p>
-          <div class="text-sm text-gray-500">
-            {{ formatDate(order.date) }}
+          <div class="flex-row">
+            <p class="font-normal">Address: {{order.address}}</p>
+            <div class="text-sm text-gray-500">
+              {{ formatDate(order.date) }}
+            </div>
           </div>
-         </div>
         </div>
-        
+
       </div>
     </div>
   </div>
 
   <div *ngIf="selectedOrder" class="shadow-lg w-[900px] rounded-lg 2xl:my-[0] sm:my-[40px]">
     <div class="items-center mb-4">
+      <div class="text-xl text-black font-bold pl-4 float-right mb-4">
+        Total: ₹{{ getSelectedOrderTotal() }}
+      </div>
       <div class="text-[24px] font-bold">
         Order #{{ selectedOrder.orderId }} ({{ selectedOrder.products.length }} items)
         <p class="font-normal">Address: {{selectedOrder.address}}</p>
         <div class="text-sm text-gray-500">
           {{ formatDate(selectedOrder.date) }}
-          <div class="text-xl font-bold pl-4">
-            Total: ₹{{ getSelectedOrderTotal() }}
-          </div>
+
         </div>
       </div>
       <hr>
       <div *ngFor="let item of selectedOrder.products" class="text-sm text-gray-500">
         <a [routerLink]="['/product/'+selectedOrder.products.id]" class="block group">
 
-        <div class="flex items-center gap-10 space-x-4 h-[200px] w-full p-2">
-          <img src="{{item.image}}" class="rounded" alt="Product Image" height="150" width="100">
-          <div class="justify-between">
-            <h1 class=" w-96  font-bold text-black text-xl">{{ item.title | truncate:4 }}</h1>
-            <p class="text-gray-600 w-96 text-xl">{{ item.description | truncate:5 }}</p>
-            <p class="text-black gap-5 mt-10 " >{{ item.quantity }} item <strong>.₹{{ item.price }}</strong></p>
+          <div class="flex items-center gap-10 space-x-4 h-[200px] w-full p-2">
+            <img src="{{item.image}}" class="rounded" alt="Product Image" height="150" width="100">
+            <div class="justify-between">
+              <h1 class=" w-96  font-bold text-black text-xl">{{ item.title | truncate:4 }}</h1>
+              <p class="text-gray-600 w-96 text-xl">{{ item.description | truncate:5 }}</p>
+              <p class="text-black gap-5 mt-10 ">{{ item.quantity }} item <strong>.₹{{ item.price }}</strong></p>
+            </div>
+            <div class="text-xl text-black font-bold pl-4">₹{{ item.price }}</div>
           </div>
-          <div class="text-xl font-bold pl-4">₹{{ item.price }}</div>
-        </div>
-        <hr>
+          <hr>
         </a>
       </div>
     </div>

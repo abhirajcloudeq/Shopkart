@@ -8,14 +8,14 @@ import { NavBarComponent } from '../nav-bar/nav-bar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { TruncatePipe } from '../../truncate.pipe';
 import { ProductService } from '../../service/product.service';
-import { NotificationComponent } from '../notification/notification.component';
 import { CartService } from '../../service/cart.service';
 import { Login } from '@mui/icons-material';
+import { NotificationService } from '../../service/notification.service';
 @Component({
   selector: 'app-details',
   standalone: true,
   templateUrl: './details.component.html',
-  imports: [CommonModule, ProductDetailComponent, NavBarComponent, FooterComponent, RouterLink, TruncatePipe, NotificationComponent]
+  imports: [CommonModule, ProductDetailComponent, NavBarComponent, FooterComponent, RouterLink, TruncatePipe]
 })
 export class DetailsComponent implements OnInit {
   product!: Product;
@@ -25,7 +25,8 @@ export class DetailsComponent implements OnInit {
   constructor(private productService: ProductServ,
     private route: ActivatedRoute,
     private productCategories: ProductService,
-    private cartService: CartService    
+    private cartService: CartService ,
+    private notificationService:NotificationService
     ) { }
 
   ngOnInit() {
@@ -65,6 +66,8 @@ export class DetailsComponent implements OnInit {
     this.cartService.addToCart(itemToAdd).subscribe(
       (response) => {
         console.log('Item added to cart successfully:', response);
+        this.notificationService.success('Item added to cart successfully!');
+
       }
     );
   }

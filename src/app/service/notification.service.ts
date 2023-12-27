@@ -4,13 +4,16 @@ import { Subject } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class NotificationService {
-  private notificationSubject = new Subject<string>();
+  constructor() {}
 
-  public getNotificationSubject() {
-    return this.notificationSubject.asObservable();
+  success(message: string, title: string = 'Success'): void {
+    // Implement your success notification logic here
+    console.log(`[SUCCESS] ${title}: ${message}`);
   }
 
-  public showNotification(message: string) {
-    this.notificationSubject.next(message);
+  error(message: string, title: string = 'Error'): void {
+    // Implement your error notification logic here
+    console.log(`[ERROR] ${title}: ${message}`);
   }
+
 }

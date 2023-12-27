@@ -27,7 +27,7 @@ export class CartComponent implements OnInit {
     const userId: any = localStorage.getItem("userId");
     this.cartService.getCartProductsByUserId(userId).subscribe(
       (result: any) => {
-        this.data = result[0].products;
+        this.data = result;
         console.log("data", this.data);
       }
     );
@@ -84,8 +84,8 @@ export class CartComponent implements OnInit {
   }
 
     getTotalPrice(): number {
-    return this.data?.reduce((total: any, product: { price: any; }) => total + product.price, 0);
-  }
+      return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price)+20, 0);
+    }
   getCartSubtotal(): number {
   return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
 }

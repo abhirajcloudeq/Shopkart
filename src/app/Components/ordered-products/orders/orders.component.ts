@@ -51,11 +51,17 @@ export class OrdersComponent implements OnInit {
   getSelectedOrderTotal(): number {
     if (!this.selectedOrder || !this.selectedOrder.products) return 0;
 
-    return this.selectedOrder.products.reduce((total: number, product: { price: number; quantity: number; }) => {
-      return total + (product.price * product.quantity);
+    return this.selectedOrder.products.reduce((total: number, product: { price: number}) => {
+      return total + (product.price );
     }, 0);
   }
-
+  getTotalPrice(orderId: number): number {
+    const order = this.orders.find(o => o.orderId === orderId);
+    if (!order) return 0;
+  
+    return order.products.reduce((acc: any, product: { price: any; }) => acc + product.price, 0);
+  }
+  
 }
 
 

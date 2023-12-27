@@ -6,6 +6,8 @@ import { FormGroup, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule, HttpHeaders } from '@angular/common/http';
 import { Home2Component } from '../home2/home2.component';
 import { AuthService } from '../../service/authentication.service';
+import { LoginErrorDialogComponent } from '../../login-error-dialog/login-error-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 
 @Component({
@@ -19,7 +21,7 @@ export class HomeComponent implements OnInit {
   public loginform!: FormGroup;
   
 
-  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService) {}
+  constructor(private formbuilder: FormBuilder, private http: HttpClient, private router: Router, private authService: AuthService,private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.loginform = this.formbuilder.group({
@@ -48,22 +50,30 @@ export class HomeComponent implements OnInit {
       
           const options = { headers: headers };
           console.log (options)
+
        
           this.http.get<any>('http://172.31.1.135:8000/api/v1/user/details', options).subscribe((res:any)=>{
-            // console.log(res)
-            // console.log (res.userDetails.userId)
             localStorage.setItem("userId" , (res.userDetails.userId))
             localStorage.setItem("firstName", res.userDetails.firstName);
             localStorage.setItem("lastName", res.userDetails.lastName);
             localStorage.setItem("email", res.userDetails.email);
 
-            // alert('Login successful!');
             this.authService.login()
             this.router.navigate(['/']);
             this.loginform.reset();
             console.log('Navigating to home2...');
           })
+      },
+      (error) => {
+        this.openLoginErrorDialog();
       }
+     
     );
   }
+  openLoginErrorDialog(): void {
+    this.dialog.open(LoginErrorDialogComponent, {
+      width: '300px',
+    });
+  }
+
 }

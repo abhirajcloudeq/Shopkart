@@ -1,4 +1,3 @@
-// prod-detail.component.ts
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductService } from '../../service/product.service';
@@ -7,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { CartService } from '../../service/cart.service';
 import { TruncatePipe } from '../../truncate.pipe';
 import { RouterLink } from '@angular/router';
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -20,7 +20,8 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
-    private cartService: CartService 
+    private cartService: CartService ,
+    private notificationService:NotificationService
   ) {}
 
   ngOnInit() {
@@ -46,6 +47,8 @@ export class ProductDetailComponent implements OnInit {
     this.cartService.addToCart(itemToAdd).subscribe(
       (response: any) => {
         console.log('Item added to cart successfully:', response);
+        this.notificationService.success('Item added to cart successfully!');
+
       }
     );
   }
