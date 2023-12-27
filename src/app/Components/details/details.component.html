@@ -14,6 +14,8 @@
             Add to Cart
         </button>
     </div>
+    <app-cart-popup *ngIf="showPopup" [message]="popupMessage" (closePopup)="closePopup()"></app-cart-popup>
+
 </div>
 <h1 class="p-10 text-4xl font-medium text-teal-600"> Related Products </h1>
 <div class="flex justify-center">

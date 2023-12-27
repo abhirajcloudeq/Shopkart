@@ -7,15 +7,19 @@ import { CartService } from '../../service/cart.service';
 import { TruncatePipe } from '../../truncate.pipe';
 import { RouterLink } from '@angular/router';
 import { NotificationService } from '../../service/notification.service';
+import { CartPopupComponent } from '../cart-popup/cart-popup.component';
 
 @Component({
   selector: 'app-product-detail',
   standalone:true,
   templateUrl: './prod-detail.component.html',
-  imports: [CommonModule,TruncatePipe,RouterLink]
+  imports: [CommonModule,TruncatePipe,RouterLink,CartPopupComponent]
 })
 export class ProductDetailComponent implements OnInit {
   product: Product[] = [];
+  showPopup = false;
+  popupMessage = '';
+
 
   constructor(
     private route: ActivatedRoute,
@@ -42,7 +46,13 @@ export class ProductDetailComponent implements OnInit {
       userId: Number(localStorage.getItem("userId")),
       productId: product.id,
       quantity: 1,
+      
     }
+    this.popupMessage = 'Item added to cart!';
+    this.showPopup = true;
+    setTimeout(() => {
+      this.closePopup();
+    }, 1000);
     
     this.cartService.addToCart(itemToAdd).subscribe(
       (response: any) => {
@@ -52,5 +62,8 @@ export class ProductDetailComponent implements OnInit {
       }
     );
   }
-  
+  closePopup() {
+    this.showPopup = false;
+    this.popupMessage = '';
+  }
 }

@@ -1,14 +1,9 @@
- import { Component, OnInit,inject } from '@angular/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+ import { Component, OnInit } from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
-import { NgModel } from '@angular/forms';
 import { CategoryService} from '../../service/apidata.service';
-import { AppComponent } from '../../app.component';
 import { Category } from '../../Interface/category';
 import { FooterComponent } from '../footer/footer.component';
-import { HttpHeaders } from '@angular/common/http'
 import { NavBarComponent } from "../nav-bar/nav-bar.component";
 
 
@@ -21,12 +16,10 @@ import { NavBarComponent } from "../nav-bar/nav-bar.component";
 export class Home2Component implements OnInit {
   categories: Category[] = [];
 
-  constructor(private categoryService: CategoryService, private router:Router) {}
+  constructor(private categoryService: CategoryService) {}
 
   ngOnInit() {
-    // const accessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOjIsImlhdCI6MTcwMTY5Njc5MSwiZXhwIjoxNzAxNzAwMzkxfQ.9hroq0SnMbbhqaLgnLd4W_6tzt_txtaiergAIgU1kxU'; 
-
-    // const headers = ?new HttpHeaders().set('authorization', `${accessToken}`);
+   
 
     this.categoryService.getCategories().subscribe(
       (data) => {

@@ -11,16 +11,20 @@ import { ProductService } from '../../service/product.service';
 import { CartService } from '../../service/cart.service';
 import { Login } from '@mui/icons-material';
 import { NotificationService } from '../../service/notification.service';
+import { CartPopupComponent } from '../cart-popup/cart-popup.component';
 @Component({
   selector: 'app-details',
   standalone: true,
   templateUrl: './details.component.html',
-  imports: [CommonModule, ProductDetailComponent, NavBarComponent, FooterComponent, RouterLink, TruncatePipe]
+  imports: [CommonModule, ProductDetailComponent, NavBarComponent, FooterComponent, RouterLink, TruncatePipe,CartPopupComponent]
 })
 export class DetailsComponent implements OnInit {
   product!: Product;
   categoryId !: string;
   otherproducts!: Product[];
+  showPopup = false;
+  popupMessage = '';
+
 
   constructor(private productService: ProductServ,
     private route: ActivatedRoute,
@@ -62,6 +66,11 @@ export class DetailsComponent implements OnInit {
       quantity: 1,
 
     }
+    this.popupMessage = 'Item added to cart!';
+    this.showPopup = true;
+    setTimeout(() => {
+      this.closePopup();
+    }, 1000);
     
     this.cartService.addToCart(itemToAdd).subscribe(
       (response) => {
@@ -70,6 +79,10 @@ export class DetailsComponent implements OnInit {
 
       }
     );
+  }
+  closePopup() {
+    this.showPopup = false;
+    this.popupMessage = '';
   }
 }
 

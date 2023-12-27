@@ -3,7 +3,6 @@ import { CartService } from '../../service/get-cart.service';
 import { FormComponent } from './form/form.component';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Map } from '@mui/icons-material';
 import { switchMap } from 'rxjs/operators';
 
 @Component({
@@ -47,7 +46,7 @@ export class CartComponent implements OnInit {
       switchMap(() => this.cartService.getCartProductsByUserId(userId))
     ).subscribe(
       (result: any) => {
-        this.data = result[0].products;
+        this.data = result;
         console.log("Item removed successfully", this.data);
       }
     );
@@ -60,7 +59,7 @@ export class CartComponent implements OnInit {
       switchMap(() => this.cartService.getCartProductsByUserId(userId))
     ).subscribe(
       (result: any) => {
-        this.data = result[0].products;
+        this.data = result;
         console.log("Quantity incremented successfully", this.data);
       }
     );
@@ -73,7 +72,7 @@ export class CartComponent implements OnInit {
       switchMap(() => this.cartService.getCartProductsByUserId(userId))
     ).subscribe(
       (result: any) => {
-        this.data = result[0].products;
+        this.data = result;
         console.log("Quantity decremented successfully", this.data);
       }
     );
@@ -83,10 +82,11 @@ export class CartComponent implements OnInit {
     return this.data.length === 0;
   }
 
-    getTotalPrice(): number {
-      return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price)+20, 0);
-    }
+  getTotalPrice(): number {
+    return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price) + 20, 0);
+  }
+
   getCartSubtotal(): number {
-  return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
-}
+    return this.data.reduce((total: number, product: any) => total + (product.quantity * product.price), 0);
+  }
 }
